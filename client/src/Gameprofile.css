@@ -1,0 +1,96 @@
+.gameProfileBackgroundContainer{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.gameProfileBody{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.gameProfileBody .contentContainer{
+    display: flex;
+    gap: 10px;
+}
+
+
+.contentContainer .rightContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contentContainer .leftContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.contentContainer .leftContainer :nth-child(1){
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+    width: 150px;
+    position: relative;
+    left: 200px;
+}
+
+.contentContainer .leftContainer :nth-child(2){
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+}
+
+
+.gameProfileBody .reviewListContainer{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    padding-left: 140px;
+}
+
+.gameProfileDescription{
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.developerContainer{
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+}
+
+.sysReqContainer{
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+}
+.createReviewContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewtext{
+    width: 400px;
+    height: 100px;
+    outline: none;
+    resize: none; 
+    border-radius: 9px;
+}
+
+.createReviewContainer>form>button{
+    width: 80px;
+    height: 40px;
+    border-radius: 9px;
+    border: 1px solid black;
+}
+
+.createReviewContainer>form>div{
+    display: flex;
+    gap: 20px;
+}

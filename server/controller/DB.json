@@ -1,0 +1,58 @@
+{
+      "gameData": [
+        {
+          "gameTitle": "anime",
+          "gameId": 1,
+          "gameDescription": "game about anime",
+          "gamePrice": 23.99
+        },
+        {
+          "gameTitle": "badges",
+          "gameId": 2,
+          "gameDescription": "game about badges",
+          "gamePrice": 33.99
+        },
+        {
+          "gameTitle": "character",
+          "gameId": 3,
+          "gameDescription": "game about character",
+          "gamePrice": 59.99
+        },
+        {
+          "gameTitle": "dragon",
+          "gameId": 6,
+          "gameDescription": "game about dragon  One day, John was sent on a quest by the King to slay a dragon that had been terrorizing the villagers. The dragon had been wreaking havoc for years and no one had been able to stop it. John was sure of himself as he set out on the quest. He was determined to defeat the dragon and protect the innocent villagers. He rode his mighty steed across the countryside and eventually came to a cave. ",
+          "gamePrice": 13.99
+        },
+        {
+          "gameTitle": "concept_art",
+          "gameId": 4,
+          "gameDescription": "game about concept_art",
+          "gamePrice": 44.99
+        },
+        {
+          "gameTitle": "game_title",
+          "gameId": 7,
+          "gameDescription": "game about game_title",
+          "gamePrice": 3.99
+        },
+        {
+          "gameTitle": "spaceship",
+          "gameId": 10,
+          "gameDescription": "game about spaceship",
+          "gamePrice": 105.99
+        },
+        {
+          "gameTitle": "pixel_monster",
+          "gameId": 9,
+          "gameDescription": "game about pixel_monster",
+          "gamePrice": 114.99
+        },
+        {
+          "gameTitle": "monster",
+          "gameId": 8,
+          "gameDescription": "game about monster",
+          "gamePrice": 103.99
+        }
+      ]
+}

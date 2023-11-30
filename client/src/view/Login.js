@@ -1,0 +1,112 @@
+import "./Login.css";
+import {useState} from 'react';
+import { useNavigate } from "react-router-dom";
+
+export default function Login(){
+
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [emailMsg, setEmailMsg] = useState("")
+
+    const [password, setPassword] = useState("");
+
+    const [errorMessage, setErrorMessage] = useState("");
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if(isEmailValid){
+            fetch('http://localhost:5555/login', {
+            method: 'POST',
+            body: JSON.stringify({email: email, password: password}),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            })
+            .then(res => res.json())
+            .then(function(data){
+                console.log("login data is..", data);
+
+                //if email did not exist, put an error message 
+                
+                if(data.state.flag === false){
+                    setErrorMessage(data.state.message);
+                }else{
+                    sessionStorage.setItem("session", email);
+                //on success go to /home 
+                    alert("success!");   
+                    navigate('/home');
+                }
+                //else check feteched password with current user given password 
+
+            });
+
+        }
+    }
+
+
+    const validateEmail = (email) => {
+        const reg = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return reg.test(email.toLowerCase());
+    }
+
+    const onEmailHandler = (event) => {
+        const currEmail = event.currentTarget.value;
+
+        setEmail(currEmail);
+
+        if(currEmail == ""){
+            setEmailMsg("");
+        }else{
+            if (!validateEmail(currEmail)) {
+                setEmailMsg("please submit valid email format")
+            } else if(validateEmail(currEmail)){
+                setEmailMsg("correct email format");
+            }
+        }
+    }
+
+    const isEmailValid = validateEmail(email);
+
+    const onPasswordHandler = (event) => {
+        const currPassword = event.currentTarget.value;
+        setPassword(currPassword);
+    }
+
+
+
+
+    return(
+        <div className='background'>
+            <div className='logincontainer'>
+            <div className='title'> log in </div>
+            {errorMessage && <div className='errorMessage'>login failed</div>}
+            <form onSubmit={handleSubmit}>
+                <div className='innerContainer'>
+                    <label>Enter your email </label>
+                    <input 
+                    type="text" 
+                    name="email" 
+                    value={email} 
+                    onChange={onEmailHandler}
+                    />
+                    { emailMsg !== "" && <div className={isEmailValid ? 'validMessage':'invalidMessage'}  > {emailMsg} </div>}
+                </div>
+
+                <div className='innerContainer'>
+                    <label htmlFor="password">Enter your password </label>
+                    <input 
+                    type="text" 
+                    id="password"
+                    value={password}
+                    onChange={onPasswordHandler}
+                    />
+                </div>
+            <input type="submit" />
+            </form>
+
+            </div>
+        </div>
+    );
+}

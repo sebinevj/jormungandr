@@ -1,0 +1,136 @@
+
+@font-face {
+    font-family: "neo-bold";
+    src: url("../fonts/VictorMonoAll/TTF/VictorMono-Bold.ttf");
+}
+
+@font-face {
+    font-family: "neo-norm";
+    src: url("../fonts/VictorMonoAll/TTF/VictorMono-Regular.ttf");
+}
+
+body{
+    font-family: "neo-bold";
+}
+
+.background{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+}
+
+.registercontainer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    background-color: tomato;
+    border: 3px solid black;
+    box-shadow: 10px 10px 2px black;
+    width: 400px;
+    height: 550px;
+    gap: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.innerContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.innerLastContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    top: 30px;
+}
+
+.lastContainer{
+    display: flex;
+    gap: 10px;
+}
+
+
+.title{
+    font-family: "neo-bold";
+    position: relative;
+    top: -10px;
+    font-size: 30px;
+}
+
+.innerContainer>input{
+    width: 250px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+}
+
+.innerContainer>input:focus{
+    border-color: none;
+    outline: none;
+    background-color: gainsboro;
+}
+
+input[type="submit"]{
+    background-color: plum;
+    width: 250px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    font-family: "neo-bold";
+}
+
+input[type="submit"]:focus{
+    border-color: none;
+    outline: none;
+    background-color: gainsboro;
+}
+
+
+.userNameLabel{
+    position: relative;
+    left: -35px;
+}
+
+
+
+.confirmPasswordLabel{
+    position: relative;
+    left: -35px;
+}
+
+.labelContainer{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.validMessage{
+    color: rgb(205, 83, 83);
+    font-family: "neo-norm";
+    background-color: rgb(42, 245, 177);
+    border-radius: 15px;
+    width: 250px;
+    opacity: 80%;
+}
+
+
+
+.lastContainer>button{
+    width: 70px;
+    border-radius: 15px;
+}

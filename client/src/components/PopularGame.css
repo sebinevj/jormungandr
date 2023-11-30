@@ -1,0 +1,87 @@
+.PopularGameContainer{
+  
+}
+
+.buttonOnSide{
+    height: 60px;
+    width: 120px;
+    position: relative;
+    top: 130px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    border-radius: 15px;
+}
+
+.PopularGameContainer .backgroundContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.PopularGameContainer .contentContainer{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+    box-shadow: 2px 2px 1px black;
+    border-radius: 15px;
+    background-color: tomato;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.PopularGameContainer .pictureContainer{
+    display: flex;
+    gap:10px;
+}
+
+.PopularGameContainer .rightContainer{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    gap: 20px;
+}
+
+.PopularGameContainer .extraImagesContainer{
+   
+    display: grid;
+    grid-template-columns: 75px 75px auto;
+    grid-template-rows: 75px;
+    gap: 10px;
+  
+}
+
+
+
+.target{
+    width: 100px;
+    height: 100px;
+    background-color: cadetblue;
+}
+
+img{
+    border: 3px solid black;
+    box-shadow: 2px 2px 1px black;
+    border-radius: 15px;
+}
+
+.purchaseContainer{
+    height: 130px;
+    width: 200px;  
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.purchaseContainer>button{
+    border: none;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 80px;
+    height: 60px;
+}

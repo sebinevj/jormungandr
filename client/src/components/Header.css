@@ -1,0 +1,39 @@
+.OuterContainer{
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100px;
+    gap: 3px;
+}
+
+.FirstHeader{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.FirstHeader>button{
+    width: 110px;
+    height: 40px;
+    border: none;
+}
+.FirstHeader>input{
+    width: 350px;
+    height: 30px;
+    outline: none;
+}
+
+.SecondHeader{
+    display: flex;
+    flex-direction: row;
+}
+
+.SecondHeader>button{
+    width: 120px;
+    height: 40px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    border-radius: 15px;
+}

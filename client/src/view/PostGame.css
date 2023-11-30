@@ -1,0 +1,32 @@
+
+.postGameSection>nav{
+    height: 60px;
+}
+
+
+
+.postGameSection>nav::after{
+    clear: both;
+    content: "";
+    display: table;
+}
+.postGameSection>nav>div{
+   
+}
+
+.postGameSection>nav>ul{
+    list-style: none;
+    display: flex;
+    
+    gap: 30px;
+   
+}
+.postGameSection>nav>ul>li{
+    float: left;
+    
+}
+
+.postGame{
+    float: left;
+}
+

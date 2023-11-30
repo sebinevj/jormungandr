@@ -1,0 +1,27 @@
+
+.reviewContainer{
+    display: flex;
+    flex-direction: column;   
+    gap: 3px;
+    position: relative;
+    left: 100px;
+    width: 300px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+    background-color: tomato;
+}
+
+.reviewContainer .firstContainer{
+    display: flex;
+    gap: 30px;
+}
+.reviewContainer .secondContainer{
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.popUpMenuButton{
+    
+}
