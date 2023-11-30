@@ -7,6 +7,7 @@ export default function PostGame(){
     return(
         <section className='postGameSection'>
             <nav>
+                <div>
                 <div className='title nav postGame'>Jörmungandr</div>
                 <ul>
                     <li>Devleoper's information</li>
@@ -14,6 +15,7 @@ export default function PostGame(){
                     <li>pictures</li>
                     <li>Agreement</li>
                 </ul>
+                </div>
             </nav>
 
                 <div>

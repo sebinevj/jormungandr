@@ -3,21 +3,18 @@
     height: 60px;
 }
 
-
-
 .postGameSection>nav::after{
     clear: both;
     content: "";
     display: table;
 }
-.postGameSection>nav>div{
-   
+.postGameSection>nav>.container{
+   margin-left: 10px;
 }
 
-.postGameSection>nav>ul{
+.postGameSection>nav>div>ul{
     list-style: none;
     display: flex;
-    
     gap: 30px;
    
 }
