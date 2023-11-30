@@ -9,12 +9,14 @@ export default function PostGame(){
             <nav>
                 <div>
                 <div className='title nav postGame'>Jörmungandr</div>
-                <ul>
-                    <li>Devleoper's information</li>
-                    <li>System requirement</li>
-                    <li>pictures</li>
-                    <li>Agreement</li>
-                </ul>
+                <div className='listContainer'>
+                    <ul>
+                        <li>Devleoper's information</li>
+                        <li>System requirement</li>
+                        <li>pictures</li>
+                        <li>Agreement</li>
+                    </ul>
+                </div>
                 </div>
             </nav>
 

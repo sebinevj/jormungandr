@@ -3,6 +3,10 @@
     height: 60px;
 }
 
+.postGameSection>nav>div>.postGame{
+    margin-left: 20px;
+}
+
 .postGameSection>nav::after{
     clear: both;
     content: "";
@@ -12,11 +16,16 @@
    margin-left: 10px;
 }
 
-.postGameSection>nav>div>ul{
+.postGameSection>nav>.listContainer{
+    margin-top: 10px;
+}
+
+.postGameSection>nav>div>div>ul{
     list-style: none;
     display: flex;
     gap: 30px;
-   
+    padding-left: 20px;
+    padding-top: 15px;
 }
 .postGameSection>nav>ul>li{
     float: left;
