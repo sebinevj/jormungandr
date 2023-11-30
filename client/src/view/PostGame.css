@@ -36,3 +36,40 @@
     float: left;
 }
 
+
+
+
+/*contents*/
+.devInfoSection{
+    height: 400px;
+    min-height: 400px;
+}
+
+.devInfoContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+
+
+.devInfoContainer>label>textarea{
+    width: 400px;
+    height: 200px;
+    resize: none;
+}
+
+
+
+
+.devInfoSection>.devInfoContainer{
+    margin-top: 100px;
+}
+
+
+
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused.MuiOutlinedInput-notchedOutline{
+    
+}
