@@ -1,3 +1,21 @@
+/*
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+*/
+
+.menuNav{
+    position: static;
+}
+
+.menuNavFixed{
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    background-color: antiquewhite;
+}
+
 
 .postGameSection>nav{
     height: 60px;
@@ -40,6 +58,7 @@
 
 
 /*contents*/
+/*devInfoSection */
 .devInfoSection{
     height: 400px;
     min-height: 400px;
@@ -48,25 +67,52 @@
 .devInfoContainer{
     display: flex;
     flex-direction: column;
+    
     gap: 30px;
 }
 
+.devInfoContainer>div{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.devInfoContainer>div>label::after{
+    content: "";
+    display: block;
+}
 
 
+.devInfoContainer>div>label>text::after{
+    content: "";
+    display: block;
+}
 
-.devInfoContainer>label>textarea{
+
+.devInfoContainer>div>label>textarea{
     width: 400px;
     height: 200px;
     resize: none;
 }
 
-
-
-
 .devInfoSection>.devInfoContainer{
     margin-top: 100px;
 }
 
+.postgameButton{
+    margin-left: 30%;
+}
+
+button>span{
+    display: flex;
+}
+
+
+/*sysReqSection*/
+.sysReqSection{
+    height: 400px;
+    margin-top:150px;
+}
 
 
 
