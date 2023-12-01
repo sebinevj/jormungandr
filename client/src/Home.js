@@ -91,9 +91,9 @@ function Home(){
     return (
         <div className='totalWrapper'>
             <div className='backgroundHome'>
-                <Header auth={auth} setAuth={setAuth}/>
+                {auth && <Header auth={auth} setAuth={setAuth}/>}
                 <div>Popular Games</div>
-                <PopularGame auth={auth}/>
+                {auth && <PopularGame auth={auth}/>}
                 <div>On Sale</div>
                 {gamesOnSale()}
                 {category()}
