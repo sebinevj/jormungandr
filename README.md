@@ -1,5 +1,5 @@
 # jormungandr
-Welcome to GameHub, a platform that brings together gamers and developers in a vibrant community. This README.md will guide you through the features and functionality of our website.
+Welcome to jormungandr, a platform that brings together gamers and developers in a vibrant community. This README.md will guide you through the features and functionality of our website.
 
 ## Getting Started
 To get started with jormungandr, follow these simple steps:
