@@ -12,15 +12,18 @@ exports.loginHandler = async (req, res, next) => {
         console.log(error);
     }
 
+
     let state;
     //given email was registered
     if(result){
         //compare retrived password with req.body.password
         //console.log("comparing..",req.body.password, result.password)
+
+        //on success
         if(req.body.password === result.password){
-            state = {flag: true, message:""}
-            //store session
-            //console.log("success");
+           
+            state = {flag: true, message:""};
+           
         }else{
             state = {flag: false, message:"password does not match"};
         }
@@ -29,7 +32,7 @@ exports.loginHandler = async (req, res, next) => {
     }
 
     res.send({state, result});
-    //console.log("result is ", result);
+   
 };
 
 exports.registerHandler = async(req,res,next)=>{

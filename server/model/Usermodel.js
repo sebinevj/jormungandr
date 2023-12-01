@@ -2,6 +2,7 @@ const connection  = require("../util/database");
 
 module.exports = class UsersModel{
 
+    //fetch User table by given data; email
     getUserId(data){
         console.log("getting User data for..", data);
         let stmt = `select * from User where email = ?`;

@@ -11,6 +11,7 @@ function Header(){
         setAuth(sessionStorage.getItem("session"));
     },[]);
 
+    
 
     function handleSignOut(){
         sessionStorage.removeItem("session");
@@ -18,6 +19,7 @@ function Header(){
     }
 
     function handleProfile(){
+        
         fetch('http://localhost:5555/getuserid', {
             method: 'POST',
             body: JSON.stringify({email: auth}),
@@ -27,7 +29,7 @@ function Header(){
         })
         .then(res => res.json())
         .then(function(data){
-            console.log("at header...", data.data);
+            //console.log("at header...", data.data);
             navigate(`/userprofile/${data.data}`);
         });
     }
@@ -44,7 +46,7 @@ function Header(){
                 {!auth  && <button onClick={() => navigate('/login')}>sign in</button>}
                 {!auth  && <button onClick={() => navigate('/register')} >sign up</button>}
                 {auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
-                <button onClick={()=>navigate('/postgame')} >post a game</button>
+                {/*auth.DeveloperId && <button onClick={()=>navigate('/postgame')} >post a game</button>*/}
             </div>
             {/* 
             <div className="SecondHeader">

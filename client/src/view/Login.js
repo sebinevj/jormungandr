@@ -32,9 +32,26 @@ export default function Login(){
                 
                 if(data.state.flag === false){
                     setErrorMessage(data.state.message);
+
+                //log in success
                 }else{
-                    sessionStorage.setItem("session", email);
-                //on success go to /home 
+
+                    console.log("at Login", data, data.result.DeveloperId);
+                    //it is developer's id 
+                    let sess;
+                    if(data.result.DeveloperId){
+                        console.log("user is a developer");
+                        sess = {userEmail: email, Developer: true}
+                    }
+                    //it is normal user id
+                    else{
+                        console.log("user is not a developer");
+                        sess = {userEmail: email, Developer: false}
+                    }
+                    
+                    sessionStorage.setItem("session", JSON.stringify(sess));
+
+                    //on success go to /home 
                     alert("success!");   
                     navigate('/home');
                 }

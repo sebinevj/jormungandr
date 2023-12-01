@@ -25,10 +25,17 @@ function Home(){
         });
 
         let data = sessionStorage.getItem("session");
-        setAuth(sessionStorage.getItem("session"));
-        console.log("session data:",  data);
+        setAuth(JSON.parse(data));
+        console.log("session data:",  JSON.parse(data));
 
     }, []);
+
+    useEffect(() => {
+        if(auth){
+            console.log("<HEADER>", auth, auth.Developer);
+        }
+       
+    }, [auth]);
 
    
     useEffect(() => {
