@@ -3,7 +3,9 @@ import "./PopularGame.css";
 import { useNavigate } from "react-router-dom";
 import ExtraImage from './ExtraImage';
 
-function PopularGame(){
+function PopularGame(props){
+
+    //console.log("props at PopularGame", props, props.auth, props.auth.Developer, typeof(props.auth.Developer));
 
     const [flag, setTempFlag] = useState(false);
     const [curIdx, setcurIdx] = useState(0);
@@ -154,7 +156,8 @@ function PopularGame(){
                 <div className='purchaseContainer'>
                     {array && <div> ${array[curIdx].gamePrice} </div>}
                     
-                    <button>Buy Now</button>
+                    
+                    {!props.auth.Developer && <button>Buy Now</button>}
                 </div>
             </div>
             </div> 

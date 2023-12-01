@@ -2,27 +2,30 @@ import './Header.css';
 import React, { useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 
-function Header(){
+function Header(props){
+
+
+    console.log("props at Header", props, props.auth, props.auth.Developer, typeof(props.auth.Developer));
 
     const navigate = useNavigate();
-    const [auth, setAuth] = useState(null);
+    //const [auth, setAuth] = useState(null);
 
     useState(()=>{
-        setAuth(sessionStorage.getItem("session"));
+        //setAuth(sessionStorage.getItem("session"));
     },[]);
 
     
 
     function handleSignOut(){
         sessionStorage.removeItem("session");
-        setAuth(null);
+        props.setAuth(null);
     }
 
     function handleProfile(){
         
         fetch('http://localhost:5555/getuserid', {
             method: 'POST',
-            body: JSON.stringify({email: auth}),
+            body: JSON.stringify({email: props.auth.userEmail}),
             headers: {
               'Content-Type': 'application/json',
             },
@@ -41,12 +44,13 @@ function Header(){
                 <button onClick={() => navigate('/home')}>
                     logo
                 </button>
-                {auth &&<button onClick={() => handleProfile()}>profile</button>}
+                {props.auth &&<button onClick={() => handleProfile()}>profile</button>}
                 
-                {!auth  && <button onClick={() => navigate('/login')}>sign in</button>}
-                {!auth  && <button onClick={() => navigate('/register')} >sign up</button>}
-                {auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
-                {/*auth.DeveloperId && <button onClick={()=>navigate('/postgame')} >post a game</button>*/}
+                {!props.auth  && <button onClick={() => navigate('/login')}>sign in</button>}
+                {!props.auth  && <button onClick={() => navigate('/register')} >sign up</button>}
+                {props.auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
+                
+                {props.auth.Developer && <button onClick={()=>navigate('/postgame')} >post a game</button>}
             </div>
             {/* 
             <div className="SecondHeader">

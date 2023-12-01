@@ -8,6 +8,10 @@ function Home(){
 
     const [curIdx, setcurIdx] = useState([0,1,2]);
     const [array, setData] = useState(null);
+
+    /**
+     * auth will contain 
+     */
     const [auth, setAuth] = useState(null);
 
     useEffect(() => {
@@ -24,18 +28,13 @@ function Home(){
             console.log("at home...", data);
         });
 
+        //get session of user, if there is no session auth will be null
         let data = sessionStorage.getItem("session");
         setAuth(JSON.parse(data));
         console.log("session data:",  JSON.parse(data));
 
     }, []);
 
-    useEffect(() => {
-        if(auth){
-            console.log("<HEADER>", auth, auth.Developer);
-        }
-       
-    }, [auth]);
 
    
     useEffect(() => {
@@ -92,9 +91,9 @@ function Home(){
     return (
         <div className='totalWrapper'>
             <div className='backgroundHome'>
-                <Header />
+                <Header auth={auth} setAuth={setAuth}/>
                 <div>Popular Games</div>
-                <PopularGame/>
+                <PopularGame auth={auth}/>
                 <div>On Sale</div>
                 {gamesOnSale()}
                 {category()}
