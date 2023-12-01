@@ -3,15 +3,19 @@ import "./PopularGame.css";
 import { useNavigate } from "react-router-dom";
 import ExtraImage from './ExtraImage';
 
-function PopularGame(props){
+function PopularGame(){
 
     //console.log("props at PopularGame", props, props.auth, props.auth.Developer, typeof(props.auth.Developer));
 
+    const [mountedFlag, setMountedFlag] = useState(false);
     const [flag, setTempFlag] = useState(false);
     const [curIdx, setcurIdx] = useState(0);
     const [array, setData] = useState(null);
     const [mainImageIdx, setMainImageIdx] = useState(1);
     const [extraImage, setExtraImage] = useState([2,3,4,5,6,7]);
+
+    const [auth, setAuth] = useState(null);
+
 
     //const array = DB.gameData;
     //let array;
@@ -55,7 +59,19 @@ function PopularGame(props){
             
         });
 
+        //getting session and storing it into auth
+        let data = sessionStorage.getItem("session");
+        setAuth(JSON.parse(data));
+       
     },[]);
+
+
+    useEffect(()=>{
+        if(auth){
+            setMountedFlag(true);
+        }
+    },[auth])
+
 
 
     useEffect(() => {
@@ -117,10 +133,16 @@ function PopularGame(props){
 
     }
 
-    
+    function buyHandler(){
+        if(!auth){
+            alert("you must login to purchase a game");
+        }else{
+
+        }
+    }
 
 
-
+    if(mountedFlag){
     return(
         <div className='PopularGameContainer'>
            
@@ -157,7 +179,7 @@ function PopularGame(props){
                     {array && <div> ${array[curIdx].gamePrice} </div>}
                     
                     
-                    {!props.auth.Developer && <button>Buy Now</button>}
+                    {!auth.Developer && <button onClick={buyHandler}>Buy Now</button>}
                 </div>
             </div>
             </div> 
@@ -172,7 +194,7 @@ function PopularGame(props){
             </div>
         </div>
     )
-
+    }
 }
 
 export default PopularGame;

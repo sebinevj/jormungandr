@@ -5,27 +5,33 @@ import { useNavigate } from "react-router-dom";
 function Header(props){
 
 
-    console.log("props at Header", props, props.auth, props.auth.Developer, typeof(props.auth.Developer));
+
+    const [auth, setAuth] = useState(null);
+
+    
 
     const navigate = useNavigate();
-    //const [auth, setAuth] = useState(null);
+   
 
     useState(()=>{
-        //setAuth(sessionStorage.getItem("session"));
+        let data = sessionStorage.getItem("session");
+        setAuth(JSON.parse(data));
     },[]);
 
     
 
     function handleSignOut(){
         sessionStorage.removeItem("session");
-        props.setAuth(null);
+        setAuth(null);
     }
 
     function handleProfile(){
-        
+        //route to userprofile with email:String and Develop:Boolean data
+        //email:String will be passed to server 
+        //Develop:Boolean will be passed with navigate
         fetch('http://localhost:5555/getuserid', {
             method: 'POST',
-            body: JSON.stringify({email: props.auth.userEmail}),
+            body: JSON.stringify({email: auth.userEmail}),
             headers: {
               'Content-Type': 'application/json',
             },
@@ -33,7 +39,7 @@ function Header(props){
         .then(res => res.json())
         .then(function(data){
             //console.log("at header...", data.data);
-            navigate(`/userprofile/${data.data}`);
+            navigate(`/userprofile/${data.data}`,{ state:auth.Developer});
         });
     }
 
@@ -44,13 +50,13 @@ function Header(props){
                 <button onClick={() => navigate('/home')}>
                     logo
                 </button>
-                {props.auth &&<button onClick={() => handleProfile()}>profile</button>}
+                {auth &&<button onClick={() => handleProfile()}>profile</button>}
                 
-                {!props.auth  && <button onClick={() => navigate('/login')}>sign in</button>}
-                {!props.auth  && <button onClick={() => navigate('/register')} >sign up</button>}
-                {props.auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
+                {!auth  && <button onClick={() => navigate('/login')}>sign in</button>}
+                {!auth  && <button onClick={() => navigate('/register')} >sign up</button>}
+                {auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
                 
-                {props.auth.Developer && <button onClick={()=>navigate('/postgame')} >post a game</button>}
+                {auth && auth.Developer && <button onClick={()=>navigate('/postgame')} >post a game</button>}
             </div>
             {/* 
             <div className="SecondHeader">

@@ -9,6 +9,9 @@ function Home(){
     const [curIdx, setcurIdx] = useState([0,1,2]);
     const [array, setData] = useState(null);
 
+
+   
+
     /**
      * auth will contain 
      */
@@ -32,7 +35,7 @@ function Home(){
         let data = sessionStorage.getItem("session");
         setAuth(JSON.parse(data));
         console.log("session data:",  JSON.parse(data));
-
+       
     }, []);
 
 
@@ -91,9 +94,9 @@ function Home(){
     return (
         <div className='totalWrapper'>
             <div className='backgroundHome'>
-                {auth && <Header auth={auth} setAuth={setAuth}/>}
+                <Header/>
                 <div>Popular Games</div>
-                {auth && <PopularGame auth={auth}/>}
+                <PopularGame />
                 <div>On Sale</div>
                 {gamesOnSale()}
                 {category()}
