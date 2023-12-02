@@ -3,6 +3,7 @@ const connection  = require("../util/database");
 module.exports = class DeveloperModel{
 
     //select DeveloperId in Developer table with given data, UserId
+    //@data represents UserId
     getDeveloperId(data){
         let stmt = `select DeveloperId from User where UserId = ?`;
 
@@ -16,8 +17,14 @@ module.exports = class DeveloperModel{
         }));
     }
     //select all columns in Developer table with given data, UserId
+    //it uses Developer, User table joined by DeveloperId
+    //@data represents UserId
     selectAllDeveloperColumn(data){
-        let stmt = `select * from User where UserId = ?`;
+        let stmt = 
+        `SELECT dev.DeveloperId, dev.DeveloperName, dev.Location, dev.Phone FROM Developer as dev 
+        join User as us 
+        on dev.DeveloperId = us.DeveloperId 
+        where us.UserId = ?`;
 
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data])
@@ -33,6 +40,8 @@ module.exports = class DeveloperModel{
     //and select sysRequirments and game's genre with DeveloperId
     //@data represents DeveloperId
     getDeveloperInfo(data){
+        console.log("getDeveloperInfo", JSON.stringify(data))
+
         let stmt = 
         `SELECT ga.Name, ga.Price, ga.RelaseDate, ga.Description, sys.Graphics, sys.Memory, sys.Platform, sys.Storage FROM Developer as dev 
         join Game as ga
@@ -42,7 +51,7 @@ module.exports = class DeveloperModel{
         where dev.DeveloperId = ?`;
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data])
-                .then(([rows, fieldData]) => {
+                .then((rows, fieldData) => {
                     resolve(rows); // return data
                 })
                 .catch(err => console.log(err))

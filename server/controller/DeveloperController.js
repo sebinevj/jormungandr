@@ -16,7 +16,7 @@ exports.getDeveloperIdHandler = async(req,res)=>{
     res.send({data:result});
 }
 
-exports.getDeveloperHandler = async(req,res)=>{
+exports.getAllDeveloperColumnHandler = async(req,res)=>{
 
     let result;
     try{
@@ -28,4 +28,19 @@ exports.getDeveloperHandler = async(req,res)=>{
     //console.log("get DeveloperId..", JSON.stringify(result));
     res.send({data:result});
 
+}
+
+
+exports.getDeveloperHandler = async(req,res)=>{
+
+    let result;
+    try{
+        [result] = await dev.getDeveloperInfo(req.body.DeveloperId)
+    }
+    catch(error){
+        console.log(error);
+    }
+
+    //console.log("getDeveloperInfo", JSON.stringify(result))
+    res.send({data:result});
 }

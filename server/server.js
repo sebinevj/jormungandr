@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 5555; 
 const {imageloader, gameprofileLoader} = require('./controller/controller');
 const {loginHandler, registerHandler, getUserIdHandler} = require('./controller/UserController');
-const {getDeveloperIdHandler, getDeveloperHandler} = require('./controller/DeveloperController');
+const {getDeveloperIdHandler, getAllDeveloperColumnHandler, getDeveloperHandler} = require('./controller/DeveloperController');
 
 /*
 let redisClient = redis.createClient();
@@ -64,5 +64,6 @@ app.post("/login", loginHandler);
 app.post("/getuserid", getUserIdHandler);
 
 app.post("/getdeveloperid", getDeveloperIdHandler);
-//app.post("/getdeveloperinfo", );
+app.post("/getalldevelopercolumn", getAllDeveloperColumnHandler);
+app.post("/getdeveloperinfo", getDeveloperHandler);
 //   /user/login /user/register /user/getuserid  >>router them

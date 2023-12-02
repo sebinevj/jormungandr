@@ -27,9 +27,9 @@ export default function UserProfile(props){
             //which is the reason for slicing.
             //currUserId has userId
             const currUserId = location.pathname.slice(location.pathname.indexOf('/', 1) + 1);
-           
+            let devId;
             //get DeveloperId
-            fetch('http://localhost:5555/getdeveloperid', {
+            fetch('http://localhost:5555/getalldevelopercolumn', {
             method: 'POST',
             body: JSON.stringify({userId: currUserId}),
             headers: {
@@ -40,8 +40,28 @@ export default function UserProfile(props){
             .then(res => res.json())
             .then((data) => {
                 console.log("UserProfile loading DeveloperId..", data, data.DeveloperId); 
-                
+
+                devId = data.data.DeveloperId;
+                //call another fetch to get data for all games that belongs to current DeveloperId
+                fetch('http://localhost:5555/getdeveloperinfo', {
+                method: 'POST',
+                body: JSON.stringify({DeveloperId: devId}),
+                headers: {
+                'Content-Type': 'application/json',
+                },
+
+                })
+                .then(res => res.json())
+                .then((data) => {
+                    console.log("UserProfile loading DeveloperId..", data); 
+                    //store into gameArry state 
+                });
             });
+
+            
+            
+            
+
 
         }
 
