@@ -30,7 +30,7 @@ const genres = [
 
 export default function PostGame(){
 
-    window.addEventListener("scroll", setFixed);
+    
     const navRef = useRef(null);
     //setting nav's display style 
     const [isFix, setFix] = useState(false);
@@ -49,7 +49,7 @@ export default function PostGame(){
         }
         
     }
-
+    window.addEventListener("scroll", setFixed);
 
   
 
