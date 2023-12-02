@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Header from '../components/Header'
 import { useLocation } from 'react-router-dom';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 /**
  * This view gets visualized when user has logged in and clicked on 
  * profile button in header.
@@ -16,7 +16,9 @@ export default function UserProfile(props){
     const location = useLocation();
     const DeveloperFlag = location.state;
 
-    console.log(DeveloperFlag ? "I am a dev :)": "I am not :(");
+    const [gameList, setGameList] = useState([]);
+
+    //console.log(DeveloperFlag ? "I am a dev :)": "I am not :(");
 
     useEffect(()=>{
         //if user is Developer, fetch Developer's game's name,price, description, releaseDate
@@ -53,15 +55,11 @@ export default function UserProfile(props){
                 })
                 .then(res => res.json())
                 .then((data) => {
-                    console.log("UserProfile loading DeveloperId..", data); 
+                    console.log("UserProfile loading DeveloperId..", data.data); 
                     //store into gameArry state 
+                    setGameList(data.data);
                 });
             });
-
-            
-            
-            
-
 
         }
 
@@ -75,9 +73,25 @@ export default function UserProfile(props){
 
 
     if(DeveloperFlag){
+
+        const games = gameList.map((game)=>(
+            <div>
+                <h2>{game.Name}</h2>
+                <div>{game.Platform}</div>
+                <small>{game.Description}</small>
+                <div>${game.Price.toPrecision(4)}</div>
+            </div>
+        ))
+
+
+
         return(
             <div>
-            <Header/>
+                <Header/>
+                <section>
+                    {games}
+                </section>
+            
             </div>
         )
     }else{
