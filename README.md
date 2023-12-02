@@ -8,7 +8,7 @@ To get started with jormungandr, follow these simple steps:
 
 2.  run  /server/node run server.js on one terminal
 
-3.  run  /client/npm run on another terminal
+3.  run  /client/npm start on another terminal
 
 ## Features
 ### For Users
