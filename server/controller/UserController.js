@@ -1,6 +1,7 @@
 const UsersModel = require('../model/Usermodel');
-
+const DeveloperModel = require('../model/Developermodel');
 const us = new UsersModel();
+const dev = new DeveloperModel();
 
 exports.loginHandler = async (req, res, next) => {
 
@@ -74,6 +75,9 @@ exports.getUserIdHandler = async(req,res)=>{
     //res.send(result.UserId);
     res.send({data:result.UserId});
 }
+
+
+
 
 
 /*
