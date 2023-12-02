@@ -29,8 +29,8 @@ function PopularGame(){
 
     async function loadArray(data){
         await setData(data);
-        console.log("data arrrived.. from local DB for now..");
-        console.log(data);
+        console.log("data arrrived.. from local DB for now..", data);
+       
     }
 
 

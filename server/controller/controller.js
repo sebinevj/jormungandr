@@ -7,7 +7,7 @@ const gs = new GameModel();
 exports.imageloader =  (req, res, next) =>{
 
     if(req.body.type == "popular"){
-        console.log("popular");
+        //console.log("popular in imageloader", JSON.stringify(db.gameData));
         res.send(db.gameData.filter((game) =>  game.gameId % 2 == 0))
     }
     else if(req.body.type == "onSale"){

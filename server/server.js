@@ -6,6 +6,7 @@ const redis = require('redis');
 const RedisStore = require("connect-redis").default;
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
+const multer = require("multer");
 
 const app = express();
 const port = process.env.PORT || 5555; 
@@ -21,6 +22,8 @@ redisClient.on('error', (err) => console.log(`Fail to connect with redis. ${err}
 redisClient.on('connect', () => console.log('Successful to connect with redis'));
 */
 
+
+const upload = multer({ dest: "uploads/" });
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -67,3 +70,9 @@ app.post("/getdeveloperid", getDeveloperIdHandler);
 app.post("/getalldevelopercolumn", getAllDeveloperColumnHandler);
 app.post("/getdeveloperinfo", getDeveloperHandler);
 //   /user/login /user/register /user/getuserid  >>router them
+
+
+
+app.post("/uploadimages", upload.array("files"), (req,res)=>{
+    console.log("uploadimages", JSON.stringify(req.body), JSON.stringify(req.files));
+});

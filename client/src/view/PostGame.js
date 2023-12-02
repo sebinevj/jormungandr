@@ -52,8 +52,32 @@ export default function PostGame(){
     window.addEventListener("scroll", setFixed);
 
   
+    //used to store files from <input>
+    const [files, setFiles] = useState(null);
 
-    
+    //this function handles submitting pictures from user
+    //and send them to server by using fetch 
+    function handleUpload(){
+        if(!files){
+            alert("No files are selected");
+        }
+
+        const fd = new FormData();
+        for(let i = 0; i < files.length; i++){
+            fd.append(`files`, files[i]);
+        }
+
+        fetch('http://localhost:5555/uploadimages',{
+            method: 'POST',
+            body: fd,
+            headers:{
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        .then((res) => console.log(res))
+        .catch((err) => ("Error occured", err));
+
+    }
 
 
 
@@ -193,7 +217,8 @@ export default function PostGame(){
 
             </section>
             <section className='imageUploadSection'>
-
+                <input onChange={(e)=>setFiles(e.target.files)}  type='file' multiple={true}/>
+                <button onClick={handleUpload}>submit files</button>
             </section>
             <section className='agreementSection'>
                 <div>
