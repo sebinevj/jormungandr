@@ -17,6 +17,22 @@ exports.imageloader =  (req, res, next) =>{
 
 }
 
+exports.nextgameIdHandler = async (req,res,next)=>{
+
+    console.log("most recent GameId", req);
+    let result;
+    try{
+        [result] = await gs.getMostRecentGameId();
+    }
+    catch(error){
+        console.log(error);
+    }
+    console.log("most recent GameId");
+    console.log(result);
+    res.send({GameId: result});
+}
+
+
 exports.gameprofileLoader =  async (req, res, next) =>{
     const newtitle = req.body.id;
 

@@ -11,7 +11,7 @@ const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 5555; 
-const {imageloader, gameprofileLoader} = require('./controller/controller');
+const {imageloader, gameprofileLoader, nextgameIdHandler} = require('./controller/GameController');
 const {loginHandler, registerHandler, getUserIdHandler} = require('./controller/UserController');
 const {getDeveloperIdHandler, getAllDeveloperColumnHandler, getDeveloperHandler} = require('./controller/DeveloperController');
 
@@ -94,6 +94,11 @@ app.post("/getdeveloperid", getDeveloperIdHandler);
 app.post("/getalldevelopercolumn", getAllDeveloperColumnHandler);
 app.post("/getdeveloperinfo", getDeveloperHandler);
 //   /user/login /user/register /user/getuserid  >>router them
+
+
+
+
+app.get('/getnextgameid',nextgameIdHandler);
 
 
 

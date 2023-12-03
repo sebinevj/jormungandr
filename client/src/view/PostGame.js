@@ -32,6 +32,19 @@ export default function PostGame(){
 
     //const [tempImg, setTempImg] = useState(null);
     
+    const [title,setTitle] = useState('');
+    const [price,setPrice] = useState('');
+    const [description,setDescription] = useState('');
+    //setting genres from <devInfoContainer>
+    const [selectedGenres, setSelectedGenres] = useState([]);
+
+    const [graphic,setGraphic] = useState('');
+    const [memory,setMemory] = useState('');
+    const [storage,setStorage] = useState('');
+    //setting system information from <sysRequirements>
+    const [sys, setSys] = useState('');
+
+
     const navRef = useRef(null);
     //setting nav's display style 
     const [isFix, setFix] = useState(false);
@@ -58,6 +71,25 @@ export default function PostGame(){
 
 
 
+    async function fetchMovies() {
+        console.log("fetchMovies");
+        const response = await fetch('/getnextgameid',{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!response.ok) {
+            const message = `An error has occured: ${response.status}`;
+            throw new Error(message);
+        }
+
+        const gameIdJson = await response.json();
+        return gameIdJson;
+    }
+
+
     //this function handles submitting pictures from user
     //and send them to server by using fetch 
     function handleUpload(){
@@ -71,6 +103,12 @@ export default function PostGame(){
         }
         console.log("file is ", files[0] instanceof File, files[0] instanceof Blob, files[0])
 
+
+        fetchMovies().then((gameId)=>console.log("fetched gameId", gameId));
+
+        fetchMovies().catch((error) => {
+            console.log(error); // 'An error has occurred: 404'
+          });
 
         fetch('http://localhost:5555/postgameinfo',{
             method: 'POST',
@@ -112,11 +150,10 @@ export default function PostGame(){
 
 
 
-    //setting genres from <devInfoContainer>
-    const [selectedGenres, setSelectedGenres] = useState([]);
+    
 
 
-    const [sys, setSys] = useState('');
+    
 
     const handleChange = (event) => {
         setSys(event.target.value);

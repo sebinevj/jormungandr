@@ -37,4 +37,15 @@ module.exports = class GameModel{
         }));
     }
 
+    getMostRecentGameId(){
+        let stmt = `select GameId from Game ORDER BY GameId DESC LIMIT 1;`
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt)
+                .then(([rows, fieldData]) => {
+                    resolve(rows); // return data
+                })
+                .catch(err => console.log(err))
+        }));
+    }
+
 }
