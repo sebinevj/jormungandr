@@ -71,8 +71,8 @@ export default function PostGame(){
 
 
 
-    async function fetchMovies() {
-        console.log("fetchMovies");
+    async function getMostRecentGameId() {
+        
         const response = await fetch('http://localhost:5555/getnextgameid');
 
         if (!response.ok) {
@@ -88,65 +88,54 @@ export default function PostGame(){
     //this function handles submitting pictures from user
     //and send them to server by using fetch 
     function handleUpload(){
-        let gameId;
+       
         if(!files){
             alert("No files are selected");
         }
 
         const fd = new FormData();
+        //saving multiple files into FormData
         for(let i = 0; i < files.length; i++){
             fd.append(`files`, files[i]);
         }
-        console.log("file is ", files[0] instanceof File, files[0] instanceof Blob, files[0])
+        
 
+        getMostRecentGameId().then((retrivedGameId)=>{
+           
+            //after retriving moust Recent GameId, save that in to server.js local variable in order to
+            //make dir according to upload images' GameId
 
-        fetchMovies().then((retrivedGameId)=>{
-            gameId = retrivedGameId;
-            }
-        );
-
-        fetchMovies().catch((error) => {
-            console.log(error); // 'An error has occurred: 404'
-          });
-
-
-      
-
-
-        fetch('http://localhost:5555/postgameinfo',{
-            method: 'POST',
-            body:JSON.stringify({id: gameId + 1}),
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(res => res.json())
-        .then((data) => {
-            //data will have recently created GameId which will be used for file location
-
-            //send another fetch to server to store submitted files 
-            fetch('http://localhost:5555/uploadimages',{
+            //1st putting Game's information; SQL will auto generate GameId but we are passing retrivedGameId
+            //to save into local variable in server.js for future images FormData
+            fetch('http://localhost:5555/postgameinfo',{
                 method: 'POST',
-                body: fd,
-                
+                body:JSON.stringify({id: retrivedGameId.GameId.GameId + 1}),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
             })
             .then(res => res.json())
             .then((data) => {
-                //console.log("after posting", data);
-                //setTempImg(data.path);
-                
+                //after inserting Game's data
+                //send another fetch to server to store submitted image files 
+                fetch('http://localhost:5555/uploadimages',{
+                    method: 'POST',
+                    body: fd,
+                    
+                })
+                .then(res => res.json())
+                .then((data) => {
+                    
+                })
+                .catch((err) => ("Error occured", err));
             })
-            .catch((err) => ("Error occured", err));
+            .catch((error)=>console.log(error))
+            }
+        );
 
-
-        })
-        .catch((error)=>console.log(error))
-
-        
-
-
-
-        
+        getMostRecentGameId().catch((error) => {
+            console.log(error); // 'An error has occurred: 404'
+          });
 
     }
 

@@ -27,7 +27,7 @@ exports.nextgameIdHandler = async (req,res,next)=>{
     catch(error){
         console.log(error);
     }
-    console.log("most recent GameId",result);
+    console.log("most recent GameId here",result);
     res.send({GameId: result});
 }
 
