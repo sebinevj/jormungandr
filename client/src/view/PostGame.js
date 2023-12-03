@@ -73,12 +73,7 @@ export default function PostGame(){
 
     async function fetchMovies() {
         console.log("fetchMovies");
-        const response = await fetch('/getnextgameid',{
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
+        const response = await fetch('http://localhost:5555/getnextgameid');
 
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;
@@ -93,6 +88,7 @@ export default function PostGame(){
     //this function handles submitting pictures from user
     //and send them to server by using fetch 
     function handleUpload(){
+        let gameId;
         if(!files){
             alert("No files are selected");
         }
@@ -104,15 +100,22 @@ export default function PostGame(){
         console.log("file is ", files[0] instanceof File, files[0] instanceof Blob, files[0])
 
 
-        fetchMovies().then((gameId)=>console.log("fetched gameId", gameId));
+        fetchMovies().then((retrivedGameId)=>{
+            gameId = retrivedGameId;
+            }
+        );
 
         fetchMovies().catch((error) => {
             console.log(error); // 'An error has occurred: 404'
           });
 
+
+      
+
+
         fetch('http://localhost:5555/postgameinfo',{
             method: 'POST',
-            body:JSON.stringify({id:55}),
+            body:JSON.stringify({id: gameId + 1}),
             headers: {
                 'Content-Type': 'application/json',
             }

@@ -4,7 +4,7 @@ module.exports = class GameModel{
 
     //data is GameId
     getGameTable(data){
-        let stmt = `SELECT gm.Name, gm.Price, gm.Description, gm.RelaseDate, sys.Memory, sys.Graphics, sys.Storage, sys.Platform, dev.DevloperName, dev.Phone, dev.Location 
+        let stmt = `SELECT gm.Name, gm.Price, gm.Description, gm.RelaseDate, sys.Memory, sys.Graphics, sys.Storage, sys.Platform, dev.DeveloperName, dev.Phone, dev.Location 
         FROM Game as gm
         join SystemRequirements as sys
         on gm.SysReqsId = sys.SysReqsId

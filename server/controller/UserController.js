@@ -1,7 +1,6 @@
 const UsersModel = require('../model/Usermodel');
-const DeveloperModel = require('../model/Developermodel');
 const us = new UsersModel();
-const dev = new DeveloperModel();
+
 
 exports.loginHandler = async (req, res, next) => {
 

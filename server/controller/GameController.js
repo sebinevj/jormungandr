@@ -19,7 +19,7 @@ exports.imageloader =  (req, res, next) =>{
 
 exports.nextgameIdHandler = async (req,res,next)=>{
 
-    console.log("most recent GameId", req);
+    //console.log("most recent GameId", req);
     let result;
     try{
         [result] = await gs.getMostRecentGameId();
@@ -27,8 +27,7 @@ exports.nextgameIdHandler = async (req,res,next)=>{
     catch(error){
         console.log(error);
     }
-    console.log("most recent GameId");
-    console.log(result);
+    console.log("most recent GameId",result);
     res.send({GameId: result});
 }
 
