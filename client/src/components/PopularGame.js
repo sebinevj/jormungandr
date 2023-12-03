@@ -57,7 +57,8 @@ function PopularGame(){
             //console.log("loadExtraImages");
             //console.log(data);
             
-        });
+        })
+        .catch((error)=>console.log(error));
 
         //getting session and storing it into auth
         let data = sessionStorage.getItem("session");

@@ -71,18 +71,41 @@ export default function PostGame(){
         }
         console.log("file is ", files[0] instanceof File, files[0] instanceof Blob, files[0])
 
-        fetch('http://localhost:5555/uploadimages',{
+
+        fetch('http://localhost:5555/postgameinfo',{
             method: 'POST',
-            body: fd,
-            
+            body:JSON.stringify({id:55}),
+            headers: {
+                'Content-Type': 'application/json',
+            }
         })
         .then(res => res.json())
         .then((data) => {
-            //console.log("after posting", data);
-            //setTempImg(data.path);
-            
+            //data will have recently created GameId which will be used for file location
+
+            //send another fetch to server to store submitted files 
+            fetch('http://localhost:5555/uploadimages',{
+                method: 'POST',
+                body: fd,
+                
+            })
+            .then(res => res.json())
+            .then((data) => {
+                //console.log("after posting", data);
+                //setTempImg(data.path);
+                
+            })
+            .catch((err) => ("Error occured", err));
+
+
         })
-        .catch((err) => ("Error occured", err));
+        .catch((error)=>console.log(error))
+
+        
+
+
+
+        
 
     }
 
@@ -177,7 +200,7 @@ export default function PostGame(){
                         </FormControl>
                         </div>
 
-                        <div>
+                        <div className='buttonContainer'>
                             <button>next</button>
                         </div>
                 </div>
@@ -214,11 +237,10 @@ export default function PostGame(){
                 </FormControl>
                 </Box>
                 </div>
-                <div>
+                <div className='buttonContainer'>
                     <button>next</button>
                 </div>
             </div>
-
 
             </section>
             <section className='imageUploadSection'>

@@ -26,13 +26,17 @@ redisClient.on('connect', () => console.log('Successful to connect with redis'))
 //const upload = multer({ dest: "uploads/" });
 const storage = multer.diskStorage({ 
     destination: function(req, file, cb) {
-        cb(null, 'uploads')
+        cb(null, `uploads/${GameID}`);
     },
     filename: function(req, file, cb) {
         cb(null, file.originalname)
     }
 });
 const upload = multer({storage});
+
+
+//used to store generated GameID from DataBase and name filelocation for images
+let GameID;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -81,6 +85,13 @@ app.post("/getalldevelopercolumn", getAllDeveloperColumnHandler);
 app.post("/getdeveloperinfo", getDeveloperHandler);
 //   /user/login /user/register /user/getuserid  >>router them
 
+
+
+app.post("/postgameinfo",(req,res)=>{
+    console.log("/postgameinfo", JSON.stringify(req.body));
+    GameID = req.body.id;
+    res.send({case:true});
+})
 
 
 app.post("/uploadimages", upload.array("files"), (req,res)=>{
