@@ -151,9 +151,7 @@ export default function PostGame(){
             system: sys,
             date: dateToSend
         }
-
-        console.log("refs", gameInfo);
-
+        //console.log("refs", gameInfo);
 
         if(!files){
             alert("No files are selected");
@@ -170,12 +168,12 @@ export default function PostGame(){
            
             //after retriving moust Recent GameId, save that in to server.js local variable in order to
             //make dir according to upload images' GameId
-
+            
             //1st putting Game's information; SQL will auto generate GameId but we are passing retrivedGameId
             //to save into local variable in server.js for future images FormData
             fetch('http://localhost:5555/postgameinfo',{
                 method: 'POST',
-                body:JSON.stringify({id: retrivedGameId.GameId.GameId + 1}),
+                body:JSON.stringify({id: retrivedGameId.GameId.GameId + 1, gameInfo: gameInfo}),
                 headers: {
                     'Content-Type': 'application/json',
                 }

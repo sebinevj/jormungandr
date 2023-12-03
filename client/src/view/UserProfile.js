@@ -21,6 +21,9 @@ export default function UserProfile(props){
     //console.log(DeveloperFlag ? "I am a dev :)": "I am not :(");
 
     useEffect(()=>{
+        //getting UserId through router
+        const currUserId = location.pathname.slice(location.pathname.indexOf('/', 1) + 1);
+
         //if user is Developer, fetch Developer's game's name,price, description, releaseDate
         // and sysRequirments and game's genre
         if(DeveloperFlag){
@@ -28,7 +31,7 @@ export default function UserProfile(props){
             //using current path to access userId; location.pathname contains the entire /userprofile/:id
             //which is the reason for slicing.
             //currUserId has userId
-            const currUserId = location.pathname.slice(location.pathname.indexOf('/', 1) + 1);
+            
             let devId;
             //get DeveloperId
             fetch('http://localhost:5555/getalldevelopercolumn', {
@@ -46,11 +49,11 @@ export default function UserProfile(props){
                 devId = data.data.DeveloperId;
                 //call another fetch to get data for all games that belongs to current DeveloperId
                 fetch('http://localhost:5555/getdeveloperinfo', {
-                method: 'POST',
-                body: JSON.stringify({DeveloperId: devId}),
-                headers: {
-                'Content-Type': 'application/json',
-                },
+                    method: 'POST',
+                    body: JSON.stringify({DeveloperId: devId}),
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
 
                 })
                 .then(res => res.json())
@@ -62,12 +65,25 @@ export default function UserProfile(props){
             });
 
         }
-
-        
-
         //if user is not a Developer
         //get transactions 
+        else{
 
+            fetch("http://localhost:5555/getuserinfo",{
+                method: 'POST',
+                body: JSON.stringify({UserId: currUserId}),
+                headers: {
+                'Content-Type': 'application/json',
+                },
+            })
+            .then(res => res.json())
+            .then((data) => {
+                //got Transaction data 
+                console.log(data);
+
+            });
+
+        }
 
     },[])
 

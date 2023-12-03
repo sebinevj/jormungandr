@@ -88,6 +88,17 @@ exports.loadUserProfileHandler = async (req, res) =>
 }
 
 
+exports.getPurchasedGameHandler = async(req,res)=>{
+    let result;
+    try {
+        [result] = await us.UserTransactions(req.body.UserId)
+    } catch (error) {
+        console.log(error)
+    }
+    
+    res.send(result);
+}
+
 
 /*
 exports.loginHandler = async(req,res,next)=>{

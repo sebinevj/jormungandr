@@ -12,7 +12,7 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5555; 
 const {imageloader, gameprofileLoader, nextgameIdHandler} = require('./controller/GameController');
-const {loginHandler, registerHandler, getUserIdHandler} = require('./controller/UserController');
+const {loginHandler, registerHandler, getUserIdHandler, getPurchasedGameHandler} = require('./controller/UserController');
 const {getDeveloperIdHandler, getAllDeveloperColumnHandler, getDeveloperHandler} = require('./controller/DeveloperController');
 
 /*
@@ -70,10 +70,6 @@ app.listen(port, ()=>{
 })
 
 
-app.get("/api", loginHandler, (req,res)=>{
-    console.log("reached api !");
-    res.send({title: 'hello react!'});
-})
 
 app.post("/loadimages", imageloader, (req,res)=>{
     console.log("loaded images from server");
@@ -94,6 +90,11 @@ app.post("/getdeveloperid", getDeveloperIdHandler);
 app.post("/getalldevelopercolumn", getAllDeveloperColumnHandler);
 app.post("/getdeveloperinfo", getDeveloperHandler);
 //   /user/login /user/register /user/getuserid  >>router them
+
+
+
+
+app.post("/getuserinfo", getPurchasedGameHandler)
 
 
 
