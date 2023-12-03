@@ -76,7 +76,17 @@ exports.getUserIdHandler = async(req,res)=>{
     res.send({data:result.UserId});
 }
 
-
+exports.loadUserProfileHandler = async (req, res) =>
+{
+    let result;
+    try {
+        [result] = await us.loadUserProfile(req.body.UserId)
+    } catch (error) {
+        console.log(error)
+    }
+    
+    res.send({ data: result });
+}
 
 
 
