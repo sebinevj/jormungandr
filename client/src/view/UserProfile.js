@@ -83,8 +83,6 @@ export default function UserProfile(props){
             </div>
         ))
 
-
-
         return(
             <div>
                 <Header/>

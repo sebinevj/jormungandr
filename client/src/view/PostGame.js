@@ -46,6 +46,21 @@ export default function PostGame(){
     const [selectedGenres, setSelectedGenres] = useState([]);
 
 
+    useEffect(()=>{
+
+        //console.log("selectedGenres", selectedGenres);
+        let idx = [];
+        if(selectedGenres.length > 0){
+            selectedGenres.forEach((genre)=>{
+                const i = genres.indexOf(genre) + 1;
+                idx.push(i);
+            })
+        console.log("selectedGenres", selectedGenres, idx);
+
+        }
+
+    }, [selectedGenres])
+
     const graphicRef = useRef(null);
     const graphicChange=(e)=>{graphicRef.current.value = e.target.value };
 
@@ -107,15 +122,34 @@ export default function PostGame(){
        
         //make  selectedGenres into numeric values 
 
+        let idx = [];
+        selectedGenres.forEach((genre)=>{
+            const i = genres.indexOf(genre) + 1;
+            idx.push(i);
+        })
+
+        const dateObj = new Date();
+        const monthNow = dateObj.getMonth();
+        const dateNow = dateObj.getDate();
+
+        const dateToSend = {
+            year: 2023,
+            month: monthNow + 1,
+            date: dateNow + 1
+        }
+
+        //console.log(dateToSend);
 
         const gameInfo = {
             title: titleRef.current.value,
             price: priceRef.current.value,
             description: desRef.current.value,
+            genre: idx,
             graphic: graphicRef.current.value,
             memory: memoryRef.current.value,
             storage: storageRef.current.value,
-            system: sys
+            system: sys,
+            date: dateToSend
         }
 
         console.log("refs", gameInfo);
@@ -171,21 +205,13 @@ export default function PostGame(){
 
     }
 
-
-
-
-    
-
-
-    
-
     const handleChange = (event) => {
         setSys(event.target.value);
     };
 
-    useEffect(()=>{
-        console.log("selectedGenres", selectedGenres);
-    },[selectedGenres])
+    // useEffect(()=>{
+    //     console.log("selectedGenres", selectedGenres);
+    // },[selectedGenres])
 
     return(
         <div className='wrapper'>
