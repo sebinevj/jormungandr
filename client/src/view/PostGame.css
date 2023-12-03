@@ -112,9 +112,27 @@ button>span{
 .sysReqSection{
     height: 400px;
     margin-top:150px;
+    display: flex;
+    justify-content: center;
+}
+
+.sysReqSection>div>label>span{
+    display: block;
 }
 
 
+/*imageUploadSection */
+.imageUploadSection{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.imageUploadSection>div{
+    display: inline-block;
+    margin-left: 40px;
+}
 
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused.MuiOutlinedInput-notchedOutline{
     
