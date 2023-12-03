@@ -30,17 +30,33 @@ const genres = [
 
 export default function PostGame(){
 
-    //const [tempImg, setTempImg] = useState(null);
-    
-    const [title,setTitle] = useState('');
-    const [price,setPrice] = useState('');
-    const [description,setDescription] = useState('');
+
+    const titleRef = useRef(null);
+    const titleChange=(e)=>{titleRef.current.value = e.target.value };
+
+
+    const priceRef = useRef(null);
+    const priceChange=(e)=>{priceRef.current.value = e.target.value };
+
+ 
+    const desRef = useRef(null);
+    const desChange=(e)=>{desRef.current.value = e.target.value };
+
     //setting genres from <devInfoContainer>
     const [selectedGenres, setSelectedGenres] = useState([]);
 
-    const [graphic,setGraphic] = useState('');
-    const [memory,setMemory] = useState('');
-    const [storage,setStorage] = useState('');
+
+    const graphicRef = useRef(null);
+    const graphicChange=(e)=>{graphicRef.current.value = e.target.value };
+
+   
+    const memoryRef = useRef(null);
+    const memoryChange=(e)=>{memoryRef.current.value = e.target.value };
+    
+
+    const storageRef = useRef(null);
+    const storageChange =(e)=>{storageRef.current.value = e.target.value };
+
     //setting system information from <sysRequirements>
     const [sys, setSys] = useState('');
 
@@ -89,6 +105,22 @@ export default function PostGame(){
     //and send them to server by using fetch 
     function handleUpload(){
        
+        //make  selectedGenres into numeric values 
+
+
+        const gameInfo = {
+            title: titleRef.current.value,
+            price: priceRef.current.value,
+            description: desRef.current.value,
+            graphic: graphicRef.current.value,
+            memory: memoryRef.current.value,
+            storage: storageRef.current.value,
+            system: sys
+        }
+
+        console.log("refs", gameInfo);
+
+
         if(!files){
             alert("No files are selected");
         }
@@ -178,17 +210,17 @@ export default function PostGame(){
                     <div>
                         <label>
                             <text>Title</text>
-                            <input type="text"></input>
+                            <input ref={titleRef} onChange={titleChange} type="text"></input>
                         </label>
                         <label>
                             <text>Price</text>
-                            <input type="text"></input>
+                            <input ref={priceRef} onChange={priceChange} type="text"></input>
                         </label>
                     </div>
                     <div>
                         <label>
                             <text>Description</text>
-                            <textarea></textarea>
+                            <textarea ref={desRef} onChange={desChange} ></textarea>
                         </label>
                     </div>
                     <div>
@@ -238,15 +270,15 @@ export default function PostGame(){
             <div>
                 <label>
                     <span>Graphic</span>
-                    <input type="text"></input>
+                    <input  ref={graphicRef} onChange={graphicChange} type="text"></input>
                 </label>
                 <label>
                     <span>Memory</span>
-                    <input type="text"></input>
+                    <input ref={memoryRef} onChange={memoryChange} type="text"></input>
                 </label>
                 <label>
                     <span>Storage</span>
-                    <input type="text"></input>
+                    <input ref={storageRef} onChange={storageChange} type="text"></input>
                 </label>
                 <div>
                 <Box sx={{ minWidth: 120, maxWidth: 220 }}>
@@ -259,9 +291,9 @@ export default function PostGame(){
                     label="platform"
                     onChange={handleChange}
                     >
-                    <MenuItem value={10}>Windows</MenuItem>
-                    <MenuItem value={20}>Mac</MenuItem>
-                    <MenuItem value={30}>Linux</MenuItem>
+                    <MenuItem value={"Windows"}>Windows</MenuItem>
+                    <MenuItem value={"Mac"}>Mac</MenuItem>
+                    <MenuItem value={"Linux"}>Linux</MenuItem>
                     </Select>
                 </FormControl>
                 </Box>
