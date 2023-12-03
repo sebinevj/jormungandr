@@ -23,12 +23,22 @@ redisClient.on('connect', () => console.log('Successful to connect with redis'))
 */
 
 
-const upload = multer({ dest: "uploads/" });
+//const upload = multer({ dest: "uploads/" });
+const storage = multer.diskStorage({ 
+    destination: function(req, file, cb) {
+        cb(null, 'uploads')
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname)
+    }
+});
+const upload = multer({storage});
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './images')));
+app.use(express.static(path.join(__dirname, './uploads')));
 /*
 app.use(session({
     store: new RedisStore({ client: redisClient }),
@@ -75,4 +85,8 @@ app.post("/getdeveloperinfo", getDeveloperHandler);
 
 app.post("/uploadimages", upload.array("files"), (req,res)=>{
     console.log("uploadimages", JSON.stringify(req.body), JSON.stringify(req.files));
+    //res.send(req.body);
+    const path = req.files[0].path;
+    console.log("/uploadimages", path);
+    res.send({path});
 });

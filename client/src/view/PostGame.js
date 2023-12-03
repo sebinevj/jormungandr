@@ -30,6 +30,7 @@ const genres = [
 
 export default function PostGame(){
 
+    const [tempImg, setTempImg] = useState(null);
     
     const navRef = useRef(null);
     //setting nav's display style 
@@ -55,6 +56,8 @@ export default function PostGame(){
     //used to store files from <input>
     const [files, setFiles] = useState(null);
 
+    let url;
+
     //this function handles submitting pictures from user
     //and send them to server by using fetch 
     function handleUpload(){
@@ -66,19 +69,30 @@ export default function PostGame(){
         for(let i = 0; i < files.length; i++){
             fd.append(`files`, files[i]);
         }
+        console.log("file is ", files[0] instanceof File, files[0] instanceof Blob, files[0])
 
         fetch('http://localhost:5555/uploadimages',{
             method: 'POST',
             body: fd,
-            headers:{
-                "Content-Type": "multipart/form-data"
-            }
+            
         })
-        .then((res) => console.log(res))
+        .then(res => res.json())
+        .then((data) => {
+            console.log("after posting", data);
+            setTempImg(data.path);
+            
+        })
         .catch((err) => ("Error occured", err));
 
     }
 
+
+    useEffect(()=>{
+        if(tempImg){
+            //console.log("tempImg", tempImg[0], tempImg[0] instanceof Blob, tempImg[0] instanceof File);
+            //url = URL.createObjectURL(tempImg[0])
+        };
+    },[tempImg])
 
 
     //for date picker in <devInfoContainer>
@@ -219,6 +233,9 @@ export default function PostGame(){
             <section className='imageUploadSection'>
                 <input onChange={(e)=>setFiles(e.target.files)}  type='file' multiple={true}/>
                 <button onClick={handleUpload}>submit files</button>
+                {tempImg && <img 
+                width={"350px"} height={"350px"}
+                src={`http://localhost:5555/task_3.JPG`}/>}
             </section>
             <section className='agreementSection'>
                 <div>
