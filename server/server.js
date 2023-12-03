@@ -7,6 +7,7 @@ const RedisStore = require("connect-redis").default;
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
 const multer = require("multer");
+const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 5555; 
@@ -26,7 +27,15 @@ redisClient.on('connect', () => console.log('Successful to connect with redis'))
 //const upload = multer({ dest: "uploads/" });
 const storage = multer.diskStorage({ 
     destination: function(req, file, cb) {
-        cb(null, `uploads/${GameID}`);
+
+        //make a temporary dir
+        const directory =`uploads/${GameID}`;
+        //check if the temporary dir exist, if it doesn't create one
+        if (!fs.existsSync(directory)) {
+            fs.mkdirSync(directory, { recursive: true })
+          }
+        //set dir for multer
+        cb(null, directory);
     },
     filename: function(req, file, cb) {
         cb(null, file.originalname)
@@ -36,6 +45,7 @@ const upload = multer({storage});
 
 
 //used to store generated GameID from DataBase and name filelocation for images
+//GameID will always gets assigned before it gets used to make file directories for images.
 let GameID;
 
 app.use(cors());
