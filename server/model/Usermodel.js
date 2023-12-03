@@ -17,6 +17,21 @@ module.exports = class UsersModel{
         }));
     };
 
+    //fetch User's email and name by given data; UserId
+    getUserInfoById(data){
+        let stmt = `select Email, Name from User where UserId = ?`;
+
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt, [data])
+                .then(([rows, fieldData]) => {
+                    resolve(rows); // return data
+                })
+                .catch(err => console.log(err))
+                
+        }));
+    }
+
+
     //check email address when registering 
     //if email already exist, notify user 
     checkUserEmail(email){

@@ -88,15 +88,24 @@ exports.loadUserProfileHandler = async (req, res) =>
 }
 
 
+//get Transaction table data with given UserId 
+//and get User table data with given UserId
 exports.getPurchasedGameHandler = async(req,res)=>{
-    let result;
+    let transactionRes;
     try {
-        [result] = await us.UserTransactions(req.body.UserId)
+        [transactionRes] = await us.UserTransactions(req.body.UserId)
+    } catch (error) {
+        console.log(error)
+    }
+
+    let userData;
+    try {
+        [userData] = await us.getUserInfoById(req.body.UserId)
     } catch (error) {
         console.log(error)
     }
     
-    res.send(result);
+    res.send({transaction: transactionRes, userData: userData});
 }
 
 
