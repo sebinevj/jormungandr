@@ -61,4 +61,8 @@ module.exports = class GameModel{
         }));
     }
 
+    postGame(){
+        let stmt = `Insert GameId, Name from Game;`
+    }
+
 }
