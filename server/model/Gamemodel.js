@@ -61,8 +61,33 @@ module.exports = class GameModel{
         }));
     }
 
-    postGame(){
+
+      postGame(){
         let stmt = `Insert GameId, Name from Game;`
+      }
+    
+      getBestRatedGames()
+    {
+        let stmt = 'CALL best_rated;'
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt)
+                .then((rows, fieldData) => {
+                    resolve(rows);
+                })
+                .catch(err => console.log(err))
+        }));
+    }
+
+    getMostPopular()
+    {
+        let stmt = 'CALL most_popular;'
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt)
+                .then((rows, fieldData) => {
+                    resolve(rows);
+                })
+                .catch(err => console.log(err))
+        }));
     }
 
 }
