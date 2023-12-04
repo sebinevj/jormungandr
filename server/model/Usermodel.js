@@ -31,6 +31,33 @@ module.exports = class UsersModel{
         }));
     }
 
+    purchaseGame(data)
+    {
+        let stmt = 'INSERT INTO Transaction(GameId, UserId, purchaseDate) VALUES(?, ?, NOW());'
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt, [data.GameId, data.UserId])
+                .then(([rows, fieldData]) => {
+                    resolve(rows); // return data
+                })
+                .catch(err => console.log(err))
+                
+        }));
+    }
+
+    leaveReview(data)
+    {
+        let stmt = 'INSERT INTO Review(GameId, UserId, Description, WrittenDate, Rating) VALUES(?, ?, ?, NOW(), ?);'
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt, [data.GameId, data.UserId, data.Description, data.Rating])
+                .then(([rows, fieldData]) => {
+                    resolve(rows); // return data
+                })
+                .catch(err => console.log(err))
+                
+        }));
+
+    }
+
 
     //check email address when registering 
     //if email already exist, notify user 
