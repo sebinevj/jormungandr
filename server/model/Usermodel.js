@@ -80,7 +80,7 @@ module.exports = class UsersModel{
     UserTransactions(data)
     {
         console.log("Usermodel.UserTransactions()")
-        let stmt = `SELECT ts.purchaseDate, ga.Name FROM Transaction as ts 
+        let stmt = `SELECT ts.purchaseDate, ga.Name, ga.GameId FROM Transaction as ts 
         Join Game as ga 
         on ts.GameId = ga.GameId
         where UserId = ?`
