@@ -19,7 +19,7 @@ module.exports = class UsersModel{
 
     //fetch User's email and name by given data; UserId
     getUserInfoById(data){
-        let stmt = `select Email, Name from User where UserId = ?`;
+        let stmt = `select Email, Name, LastPurchase from User where UserId = ?`;
 
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data])

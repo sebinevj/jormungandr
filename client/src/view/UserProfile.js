@@ -24,7 +24,8 @@ export default function UserProfile(props){
 
     const [transactionGames, setTransactionGames] = useState([])
     const [userName, setUserName] = useState("");
-    const [userEmail, setUSerEmail] = useState("")
+    const [userEmail, setUserEmail] = useState("");
+    const [userLastPurchase, setUserLastPurchase] = useState("");
 
 
     console.log(DeveloperFlag ? "I am a dev :)": "I am not :(");
@@ -106,7 +107,8 @@ export default function UserProfile(props){
 
                 setTransactionGames(data.transaction)
                 setUserName(data.userData.Name)
-                setUSerEmail(data.userData.Email)
+                setUserEmail(data.userData.Email)
+                setUserLastPurchase(data.userData.LastPurchase)
 
             });
 
@@ -155,7 +157,7 @@ export default function UserProfile(props){
                 <h2>{game.Name}</h2>
                 <div>Purchased: {game.purchaseDate.substring(5,7)}/{game.purchaseDate.substring(8,10)}/{game.purchaseDate.substring(0,4)}</div>
                 <img width={"150px"} height={"150px"} 
-                    src={`http://localhost:5555/${game.GameId}/${game.Name}-01.png`} 
+                    src={`http://localhost:5555/${game.GameId}/${game.Name}-01.png`}
                 />
             </div>
         ))
@@ -169,6 +171,7 @@ export default function UserProfile(props){
                     <div className='infocontainer'>
                         <h2>{userName.toUpperCase()}</h2>
                         <div>Email: {userEmail}</div>
+                        <div>Last Purchase: {userLastPurchase.substring(5,7)}/{userLastPurchase.substring(8,10)}/{userLastPurchase.substring(0,4)}</div>
                     </div>
                 <h1>Purchased Games</h1>
                         <div className='gameProfileBody'>
