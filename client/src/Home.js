@@ -10,7 +10,7 @@ function Home(){
     const [array, setData] = useState(null);
 
     //allGameIds has all of existing GameIds in DataBase
-    const [allGameIds, setAllGameIds] = useState({});
+    const [allGameIds, setAllGameIds] = useState([]);
    
 
     /**
