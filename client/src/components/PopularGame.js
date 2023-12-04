@@ -5,28 +5,30 @@ import ExtraImage from './ExtraImage';
 
 function PopularGame(){
 
-    //console.log("props at PopularGame", props, props.auth, props.auth.Developer, typeof(props.auth.Developer));
+   
 
-    const [mountedFlag, setMountedFlag] = useState(false);
     const [flag, setTempFlag] = useState(false);
     const [curIdx, setcurIdx] = useState(0);
+
+    //array refers to fetched data from  /loadimages
     const [array, setData] = useState(null);
     const [mainImageIdx, setMainImageIdx] = useState(1);
     const [extraImage, setExtraImage] = useState([2,3,4,5,6,7]);
 
+    //used for saving a session 
     const [auth, setAuth] = useState(null);
 
+
+    //used for saving a session 
+    const [authFlag, setAuthFlag] = useState(false);
 
     //const array = DB.gameData;
     //let array;
     let extraImages; 
 
    
-    function loadExtraImages(){
-        //console.log(`${array[curIdx].gameTitle}`);
-        //extraImages = extraImage.map((index) => <ExtraImage gameTitle={`${array[curIdx].gameTitle}`} index={index} navigateToGameProfile={navigateToGameProfile}/>)
-    }
 
+    //this function saves fetched data from /loadimages
     async function loadArray(data){
         await setData(data);
         console.log("data arrrived.. from local DB for now..", data);
@@ -36,7 +38,7 @@ function PopularGame(){
 
     useEffect(() => {
 
-        //fetch POSt loadImages , cant do GET since we have some data to send? 
+        //fetch POST loadImages , cant do GET since we have some data to send? 
         fetch('http://localhost:5555/loadimages', {
             method: 'POST',
             body: JSON.stringify({type: "popular"}),
@@ -47,16 +49,8 @@ function PopularGame(){
         .then(res => res.json())
         .then((data) => {
            
-            //setData(data);
             loadArray(data)
-            .then(()=>{
-                console.log("loadExtraImages");
-                loadExtraImages();
-                }
-            )
-            //console.log("loadExtraImages");
-            //console.log(data);
-            
+
         })
         .catch((error)=>console.log(error));
 
@@ -65,13 +59,6 @@ function PopularGame(){
         setAuth(JSON.parse(data));
        
     },[]);
-
-
-    useEffect(()=>{
-        if(auth){
-            setMountedFlag(true);
-        }
-    },[auth])
 
 
 
@@ -89,23 +76,23 @@ function PopularGame(){
         }
     },[flag]);
 
-    /*
-    useEffect(() => {
-        console.log("loadExtraImages");
-        //extraImages = extraImage.map((index) => <ExtraImage gameTitle={array[curIdx].gameTitle} index={index} navigateToGameProfile={navigateToGameProfile}/>)
-    },[flag]);
-    */
+    useEffect(()=>{
 
-    //fetch the data and store into array 
-    //data will be [{"title": "xx", "mainPic": xx.jpg, "detailedPic": [xx.jpg, xy.jpg, ...], "price":  23.23}]
+       
+
+        if(!auth){
+            setAuthFlag(true);
+        }
+        else if(!auth.Developer){
+            setAuthFlag(true);
+        }
+        else{
+            setAuthFlag(false);
+        }
 
 
-    //array that represents fixed number of popular games 
+    },[auth])
 
-
-    //holds current index of array 
-
-    //show the very first index in the list when first rendered 
 
     //handles button 
     function ButtonHandler(idx){
@@ -123,16 +110,9 @@ function PopularGame(){
     const navigate = useNavigate();
     const navigateToGameProfile = () => {
 
-        
-       
         navigate(`/gameprofile/${array[curIdx].gameId}`,  {state: [array[curIdx].gameTitle, array[curIdx].gameId]});
     
     };
-
-    //swtiches main picture with given hovered image's id 
-    const switchMainImage=(id)=>{
-
-    }
 
     function buyHandler(){
         if(!auth){
@@ -143,7 +123,7 @@ function PopularGame(){
     }
 
 
-    if(mountedFlag){
+    //if(mountedFlag){
     return(
         <div className='PopularGameContainer'>
            
@@ -154,7 +134,7 @@ function PopularGame(){
 
             <div className='pictureContainer'>
             <div className='leftContainer'>
-            {/*<div>popular games</div>*/}
+           
             {array && <div> {array[curIdx].Name} </div>}
 
                {array &&
@@ -180,13 +160,13 @@ function PopularGame(){
                     {array && <div> ${array[curIdx].Price.toPrecision(4)} </div>}
                     
                     
-                    {!auth.Developer && <button onClick={buyHandler}>Buy Now</button>}
+                    {authFlag && <button onClick={buyHandler}>Buy Now</button>}
                 </div>
             </div>
             </div> 
 
             <div className='bottomContainer'>
-                {array && <div> {array[curIdx].gameDescription} </div>}
+                {array && <div> {array[curIdx].Description} </div>}
                 
             </div>
             </div> 
@@ -196,6 +176,6 @@ function PopularGame(){
         </div>
     )
     }
-}
+//}
 
 export default PopularGame;

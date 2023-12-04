@@ -27,7 +27,7 @@ exports.imageloader =  async (req, res, next) =>{
             console.log(error);
         }
 
-        console.log("popular", JSON.stringify(result[0]));
+        //console.log("popular", JSON.stringify(result[0]));
         res.send(result[0]);
     }
     else if(req.body.type == "onSale"){
