@@ -9,11 +9,12 @@ function Home(){
     const [curIdx, setcurIdx] = useState([0,1,2]);
     const [array, setData] = useState(null);
 
-
+    //allGameIds has all of existing GameIds in DataBase
+    const [allGameIds, setAllGameIds] = useState({});
    
 
     /**
-     * auth will contain 
+     * auth will contain session of user's email
      */
     const [auth, setAuth] = useState(null);
 
@@ -27,10 +28,13 @@ function Home(){
         })
         .then(res => res.json())
         .then(function(data){
-            setData(data);
+            setData(data.onsaleGame);
+            setAllGameIds(data.getAllGamesId)
             console.log("at home...", data);
         });
 
+
+    
         //get session of user, if there is no session auth will be null
         let data = sessionStorage.getItem("session");
         setAuth(JSON.parse(data));
@@ -82,10 +86,20 @@ function Home(){
         );
     }
 
-    function category(){
+    function displayAllGames(){
+
+        const gameImg = allGameIds.map((Game) =>(
+            <>
+                <img width={"150px"} height={"150px"} 
+                    src={`http://localhost:5555/${Game.GameId}/${Game.Name}-01.png`}
+                />
+            </>
+            )   
+        )
+
         return(
             <>
-            
+             {gameImg}
             </>
         )
     }
@@ -99,7 +113,7 @@ function Home(){
                 <PopularGame />
                 <div>On Sale</div>
                 {gamesOnSale()}
-                {category()}
+                {allGameIds && displayAllGames()}
                 <Footer/>
             </div>
         </div>

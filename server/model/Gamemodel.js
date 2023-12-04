@@ -2,7 +2,8 @@ const connection  = require("../util/database");
 
 module.exports = class GameModel{
 
-    //data is GameId
+    //getting Game's table and System Table rows with given GameId
+    //@data is GameId
     getGameTable(data){
         let stmt = `SELECT gm.Name, gm.Price, gm.Description, gm.RelaseDate, sys.Memory, sys.Graphics, sys.Storage, sys.Platform, dev.DeveloperName, dev.Phone, dev.Location 
         FROM Game as gm
@@ -42,6 +43,18 @@ module.exports = class GameModel{
         return (new Promise((resolve, reject) => {
             connection.execute(stmt)
                 .then(([rows, fieldData]) => {
+                    resolve(rows); // return data
+                })
+                .catch(err => console.log(err))
+        }));
+    }
+
+
+    getAllGamesId(){
+        let stmt = `select GameId, Name from Game;`
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt)
+                .then((rows, fieldData) => {
                     resolve(rows); // return data
                 })
                 .catch(err => console.log(err))

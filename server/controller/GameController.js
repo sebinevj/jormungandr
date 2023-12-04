@@ -4,7 +4,17 @@ const GameModel = require('../model/Gamemodel');
 
 const gs = new GameModel();
 
-exports.imageloader =  (req, res, next) =>{
+exports.imageloader =  async (req, res, next) =>{
+
+
+    let result;
+    try{
+        [result] = await gs.getAllGamesId();
+    }
+    catch(error){
+        console.log(error);
+    }
+
 
     if(req.body.type == "popular"){
         //console.log("popular in imageloader", JSON.stringify(db.gameData));
@@ -12,7 +22,7 @@ exports.imageloader =  (req, res, next) =>{
     }
     else if(req.body.type == "onSale"){
         console.log("onSale");
-        res.send(db.gameData.slice(0,5))
+        res.send({onsaleGame: db.gameData.slice(0,5), getAllGamesId: result})
     }
 
 }
