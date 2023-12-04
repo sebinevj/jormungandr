@@ -1,0 +1,40 @@
+.gameProfileBackgroundContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+
+.gamecontainer{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    height: auto;
+    max-width: 400px;
+    align-items: center;
+    justify-content: center;
+    background-color: tomato;
+    border: 3px solid black;
+    box-shadow: 10px 10px 2px black;
+}
+
+.infocontainer{
+    display: flex;
+    padding: 15px;
+    padding-bottom: 30px;
+    flex-direction: column;
+    height: auto;
+    max-width: 400px;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    border: 3px solid black;
+    box-shadow: 10px 10px 2px black;
+}
+
+
+.gameProfileBody{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}

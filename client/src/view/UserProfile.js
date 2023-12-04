@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Header from '../components/Header'
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
+import './UserProfile.css'
 /**
  * This view gets visualized when user has logged in and clicked on 
  * profile button in header.
@@ -17,12 +18,22 @@ export default function UserProfile(props){
     const DeveloperFlag = location.state;
 
     const [gameList, setGameList] = useState([]);
+    const [devName, setDevName] = useState("");
+    const [devLoc, setDevLoc] = useState("");
+    const [devPhone, setDevPhone] = useState("");
 
-    //console.log(DeveloperFlag ? "I am a dev :)": "I am not :(");
+    const [transactionGames, setTransactionGames] = useState([])
+    const [userName, setUserName] = useState("");
+    const [userEmail, setUSerEmail] = useState("")
+
+
+    console.log(DeveloperFlag ? "I am a dev :)": "I am not :(");
 
     useEffect(()=>{
         //getting UserId through router
         const currUserId = location.pathname.slice(location.pathname.indexOf('/', 1) + 1);
+        console.log(currUserId)
+        console.log(DeveloperFlag)
 
         //if user is Developer, fetch Developer's game's name,price, description, releaseDate
         // and sysRequirments and game's genre
@@ -47,6 +58,10 @@ export default function UserProfile(props){
                 console.log("UserProfile loading DeveloperId..", data, data.DeveloperId); 
 
                 devId = data.data.DeveloperId;
+                setDevName(data.data.DeveloperName);
+                setDevLoc(data.data.Location);
+                setDevPhone(data.data.Phone);
+
                 //call another fetch to get data for all games that belongs to current DeveloperId
                 fetch('http://localhost:5555/getdeveloperinfo', {
                     method: 'POST',
@@ -60,7 +75,9 @@ export default function UserProfile(props){
                 .then((data) => {
                     console.log("UserProfile loading DeveloperId..", data.data); 
                     //store into gameArry state 
+                    console.log(data)
                     setGameList(data.data);
+
                 });
             });
 
@@ -68,6 +85,9 @@ export default function UserProfile(props){
         //if user is not a Developer
         //get transactions 
         else{
+
+            console.log("here")
+
 
             fetch("http://localhost:5555/getuserinfo",{
                 method: 'POST',
@@ -79,7 +99,14 @@ export default function UserProfile(props){
             .then(res => res.json())
             .then((data) => {
                 //got Transaction data 
+                console.log("Data")
                 console.log(data);
+                console.log(data.transaction)
+                console.log(data.transaction[0].Name)
+
+                setTransactionGames(data.transaction)
+                setUserName(data.userData.Name)
+                setUSerEmail(data.userData.Email)
 
             });
 
@@ -91,27 +118,64 @@ export default function UserProfile(props){
     if(DeveloperFlag){
 
         const games = gameList.map((game)=>(
-            <div>
-                <h2>{game.Name}</h2>
-                <div>{game.Platform}</div>
+            <div className='gamecontainer'>
+                <h2>{game.Name}- ${game.Price.toPrecision(4)}</h2>
                 <small>{game.Description}</small>
-                <div>${game.Price.toPrecision(4)}</div>
+                <div>{game.Platform}</div>
+                <img width={"150px"} height={"150px"} 
+                    src={`http://localhost:5555/${game.GameId}/${game.Name}-01.png`} 
+                />
             </div>
         ))
 
         return(
             <div>
                 <Header/>
-                <section>
-                    {games}
-                </section>
+                <div className='gameProfileBackgroundContainer'>
+                    <h1>Developer Information</h1>
+                    <div className='infocontainer'>
+                        <h2>{devName.toUpperCase()}</h2>
+                        <div>Location: {devLoc}</div>
+                        <div>Phone: {devPhone}</div>
+                    </div>
+
+
+                <h1>Created Games</h1>
+                        <div className='gameProfileBody'>
+                            <br></br>
+                            {games}
+                        </div>
+                </div>
             
             </div>
         )
     }else{
+        const games = transactionGames.map((game)=>(
+            <div className='gamecontainer'>
+                <h2>{game.Name}</h2>
+                <div>Purchased: {game.purchaseDate.substring(5,7)}/{game.purchaseDate.substring(8,10)}/{game.purchaseDate.substring(0,4)}</div>
+                <img width={"150px"} height={"150px"} 
+                    src={`http://localhost:5555/${game.GameId}/${game.Name}-01.png`} 
+                />
+            </div>
+        ))
+
+
         return(
             <div>
             <Header/>
+                <div className='gameProfileBackgroundContainer'>
+                <h1>User Information</h1>
+                    <div className='infocontainer'>
+                        <h2>{userName.toUpperCase()}</h2>
+                        <div>Email: {userEmail}</div>
+                    </div>
+                <h1>Purchased Games</h1>
+                        <div className='gameProfileBody'>
+                            <br></br>
+                            {games}
+                        </div>
+                </div>
             </div>
         )
     }

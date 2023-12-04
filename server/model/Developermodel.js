@@ -36,14 +36,14 @@ module.exports = class DeveloperModel{
         }));
     }
 
-    //select Developer's game's name,price, description, releaseDate from Developer table 
+    //select Developer's game id, name,price, description, releaseDate from Developer table 
     //and select sysRequirments and game's genre with DeveloperId
     //@data represents DeveloperId
     getDeveloperInfo(data){
         console.log("getDeveloperInfo", JSON.stringify(data))
 
         let stmt = 
-        `SELECT ga.Name, ga.Price, ga.RelaseDate, ga.Description, sys.Graphics, sys.Memory, sys.Platform, sys.Storage FROM Developer as dev 
+        `SELECT ga.GameId, ga.Name, ga.Price, ga.RelaseDate, ga.Description, sys.Graphics, sys.Memory, sys.Platform, sys.Storage FROM Developer as dev 
         join Game as ga
         on dev.DeveloperId = ga.DeveloperId
         join SystemRequirements as sys
