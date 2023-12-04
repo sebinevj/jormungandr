@@ -110,7 +110,7 @@ function PopularGame(){
     const navigate = useNavigate();
     const navigateToGameProfile = () => {
 
-        navigate(`/gameprofile/${array[curIdx].gameId}`,  {state: [array[curIdx].gameTitle, array[curIdx].gameId]});
+        navigate(`/gameprofile/${array[curIdx].GameId}`,  {state: [array[curIdx].Name, array[curIdx].GameId]});
     
     };
 
