@@ -141,17 +141,23 @@ export default function PostGame(){
         //console.log(dateToSend);
 
         const gameInfo = {
-            title: titleRef.current.value,
-            price: priceRef.current.value,
-            description: desRef.current.value,
+            gameTable:{
+                title: titleRef.current.value,
+                price: priceRef.current.value,
+                description: desRef.current.value,
+                date: dateToSend
+            },
             genre: idx,
-            graphic: graphicRef.current.value,
-            memory: memoryRef.current.value,
-            storage: storageRef.current.value,
-            system: sys,
-            date: dateToSend
+
+            sysTable:{
+                graphic: graphicRef.current.value,
+                memory: memoryRef.current.value,
+                storage: storageRef.current.value,
+                platform: sys,
+            },
+            
         }
-        //console.log("refs", gameInfo);
+        console.log("refs", gameInfo);
 
         if(!files){
             alert("No files are selected");

@@ -1,5 +1,7 @@
 const DeveloperModel = require('../model/Developermodel');
+const SystemReqModel = require('../model/SystemRequirementModel');
 const dev = new DeveloperModel();
+const sys = new SystemReqModel();
 
 exports.getDeveloperIdHandler = async(req,res)=>{
 
@@ -46,21 +48,48 @@ exports.getDeveloperHandler = async(req,res)=>{
 }
 
 
+//req.body will have
+// gameInfo = {
+//     gameTable:{
+//         gameTable:{
+//             title: String,
+//             price: String,
+//             description: String,
+//             date: String
+//         },
+//         genre: Array[Number],
+//         sysTable:{
+//             graphic: String,
+//             memory: String,
+//             storage: String,
+//             system: String,
+//         },   
+//     }
 exports.submitGameHandler = async(req,res)=>{
 
   
     GameID = req.body.id;
     gameInfo = req.body.gameInfo;
-    console.log("/postgameinfo/submitGameHandler",GameID , JSON.stringify(gameInfo));
+    console.log("/postgameinfo/submitGameHandler",GameID , JSON.stringify(gameInfo), JSON.stringify(gameInfo.sysTable), gameInfo.sysTable.memory);
 
 
     let result;
-    // try{
-    //     [result] = await dev.getDeveloperInfo(req.body)
-    // }
-    // catch(error){
-    //     console.log(error);
-    // }
+    try{
+        [result] = await sys.insertSystemRequirement(req.body.gameInfo.sysTable)
+    }
+    catch(error){
+        console.log(error);
+    }
+
+    try{
+        [result] = await sys.getMostRecentSystemRequirement()
+    }
+    catch(error){
+        console.log(error);
+    }
+
+    console.log("submitGameHandler", result);
+
     res.send({case:true});
 
 }
