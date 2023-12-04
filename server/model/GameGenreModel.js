@@ -5,7 +5,8 @@ module.exports = class GameGenreModel{
     //insert a new row record into GameGenre Table 
     //@data represents 
     insertGameGenreRow(GameGenreId, GameId){
-        let stmt = `Insert Into GameGenre(GenreId, GameId) value (?,?)`;
+        let stmt = `INSERT INTO GameGenre(GenreId, GameId) VALUES (?,?)`;
+
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [GameGenreId, GameId])
                 .then(([rows, fieldData]) => {
@@ -15,4 +16,5 @@ module.exports = class GameGenreModel{
                 
         }));
     }
+
 }
