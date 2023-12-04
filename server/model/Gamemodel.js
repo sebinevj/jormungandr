@@ -62,12 +62,33 @@ module.exports = class GameModel{
     }
 
 
-      postGame(){
-        let stmt = `Insert GameId, Name from Game;`
-      }
+    //insert a new row into Game Table with given data; gets called from DeveloperController.js
+    //@data refers to Object 
+    //  data = {
+    //     DeveloperId: Number
+    //     SysReqsId: Number
+    //     game: {
+    //             title: String,
+    //             price: String,
+    //             description: String,
+    //             date: String
+    //          }   
+    // }
+    insertNewGame(data){
+        let stmt = `Insert into Game(DeveloperId, SysReqsId, Name, Price, Description, RelaseDate) 
+        values(?,?,?,?,?,?);`
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt,[data.DeveloperId, data.SysReqsId, data.game.title, data.game.price, data.game.description, data.game.date])
+                .then((rows, fieldData) => {
+                    resolve(rows);
+                })
+                .catch(err => console.log(err))
+        }));
+
+    }
     
-      getBestRatedGames()
-    {
+    //call procedure best_rated
+    getBestRatedGames(){
         let stmt = 'CALL best_rated;'
         return (new Promise((resolve, reject) => {
             connection.execute(stmt)
@@ -78,8 +99,8 @@ module.exports = class GameModel{
         }));
     }
 
-    getMostPopular()
-    {
+    //call procedure most_popular
+    getMostPopular(){
         let stmt = 'CALL most_popular;'
         return (new Promise((resolve, reject) => {
             connection.execute(stmt)

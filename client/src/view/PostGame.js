@@ -1,6 +1,5 @@
 import './PostGame.css'
 import Footer from '../components/Footer';
-import dayjs from 'dayjs';
 import {useEffect, useState, useRef} from 'react';
 import Box from '@mui/material/Box';
 
@@ -29,6 +28,13 @@ const genres = [
 ]
 
 export default function PostGame(){
+
+
+    const [auth, setAuth] = useState(null);
+    useState(()=>{
+        let data = sessionStorage.getItem("session");
+        setAuth(JSON.parse(data));
+    },[]);
 
 
     const titleRef = useRef(null);
@@ -132,13 +138,16 @@ export default function PostGame(){
         const monthNow = dateObj.getMonth();
         const dateNow = dateObj.getDate();
 
-        const dateToSend = {
-            year: 2023,
-            month: monthNow + 1,
-            date: dateNow + 1
-        }
+        const dateToSend = "" +2023+ "-" + (monthNow + 1) + "-" + (dateNow + 1);
+        
 
-        //console.log(dateToSend);
+        // const dateToSend = {
+        //     year: 2023,
+        //     month: monthNow + 1,
+        //     date: dateNow + 1
+        // }
+
+        console.log(dateToSend);
 
         const gameInfo = {
             gameTable:{
@@ -148,7 +157,7 @@ export default function PostGame(){
                 date: dateToSend
             },
             genre: idx,
-
+            email: auth.userEmail,
             sysTable:{
                 graphic: graphicRef.current.value,
                 memory: memoryRef.current.value,

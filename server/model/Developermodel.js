@@ -16,6 +16,23 @@ module.exports = class DeveloperModel{
                 
         }));
     }
+
+    //select DeveloperId in Developer table with given data, email
+    //@data represents email
+    getDeveloperIdByEmail(data){
+        let stmt = `select DeveloperId from User where Email = ?`;
+
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt, [data])
+                .then(([rows, fieldData]) => {
+                    resolve(rows); // return data
+                })
+                .catch(err => console.log(err))
+                
+        }));
+    }
+
+
     //select all columns in Developer table with given data, UserId
     //it uses Developer, User table joined by DeveloperId
     //@data represents UserId
