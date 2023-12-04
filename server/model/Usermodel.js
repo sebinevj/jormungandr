@@ -59,22 +59,22 @@ module.exports = class UsersModel{
     }
 
     //@data represnets UserID 
-    loadUserProfile(data)
-    {
-        //console.log("Usermodel.loadUserProfile()")
+    // loadUserProfile(data)
+    // {
+    //     //console.log("Usermodel.loadUserProfile()")
 
-        let stmt = 'SELECT t.purchaseDate, g.Name, g.Description, g.AvgRating FROM Game AS g JOIN Transaction As t ON g.GameId = t.GameId WHERE UserId = ?';
+    //     let stmt = 'SELECT t.purchaseDate, g.Name, g.Description, g.AvgRating FROM Game AS g JOIN Transaction As t ON g.GameId = t.GameId WHERE UserId = ?';
 
-        return (new Promise((resolve, reject) => {
-            connection.execute(stmt, [data])
-                .then((rows, fieldData) => {
-                    resolve(rows); // return data
-                })
-                .catch(err => console.log(err))
+    //     return (new Promise((resolve, reject) => {
+    //         connection.execute(stmt, [data])
+    //             .then((rows, fieldData) => {
+    //                 resolve(rows); // return data
+    //             })
+    //             .catch(err => console.log(err))
                 
-        }));
+    //     }));
 
-    }
+    // }
 
     //@data represnets UserID 
     UserTransactions(data)

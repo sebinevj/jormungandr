@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT || 5555; 
 const {imageloader, gameprofileLoader, nextgameIdHandler} = require('./controller/GameController');
 const {loginHandler, registerHandler, getUserIdHandler, getPurchasedGameHandler} = require('./controller/UserController');
-const {getDeveloperIdHandler, getAllDeveloperColumnHandler, getDeveloperHandler} = require('./controller/DeveloperController');
+const {getDeveloperIdHandler, getAllDeveloperColumnHandler, getDeveloperHandler, submitGameHandler} = require('./controller/DeveloperController');
 
 /*
 let redisClient = redis.createClient();
@@ -103,11 +103,13 @@ app.get('/getnextgameid',nextgameIdHandler);
 
 
 
-app.post("/postgameinfo",(req,res)=>{
-    console.log("/postgameinfo", JSON.stringify(req.body));
-    GameID = req.body.id;
-    res.send({case:true});
-})
+// app.post("/postgameinfo",(req,res)=>{
+//     console.log("/postgameinfo", JSON.stringify(req.body));
+//     GameID = req.body.id;
+//     res.send({case:true});
+// })
+
+app.post("/postgameinfo", submitGameHandler);
 
 
 app.post("/uploadimages", upload.array("files"), (req,res)=>{

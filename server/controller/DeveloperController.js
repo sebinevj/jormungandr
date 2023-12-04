@@ -44,3 +44,22 @@ exports.getDeveloperHandler = async(req,res)=>{
     //console.log("getDeveloperInfo", JSON.stringify(result))
     res.send({data:result});
 }
+
+
+exports.submitGameHandler = async(req,res)=>{
+
+    console.log("/postgameinfo/submitGameHandler");
+    GameID = req.body.id;
+    
+
+
+    let result;
+    // try{
+    //     [result] = await dev.getDeveloperInfo(req.body.DeveloperId)
+    // }
+    // catch(error){
+    //     console.log(error);
+    // }
+    res.send({case:true});
+
+}
