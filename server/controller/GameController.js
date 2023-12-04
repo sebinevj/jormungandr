@@ -18,7 +18,17 @@ exports.imageloader =  async (req, res, next) =>{
 
     if(req.body.type == "popular"){
         //console.log("popular in imageloader", JSON.stringify(db.gameData));
-        res.send(db.gameData.filter((game) =>  game.gameId % 2 == 0))
+        //res.send(db.gameData.filter((game) =>  game.gameId % 2 == 0))
+
+        try{
+            [result] = await gs.getMostPopular();
+        }
+        catch(error){
+            console.log(error);
+        }
+
+        console.log("popular", JSON.stringify(result[0]));
+        res.send(result[0]);
     }
     else if(req.body.type == "onSale"){
         console.log("onSale");

@@ -155,13 +155,13 @@ function PopularGame(){
             <div className='pictureContainer'>
             <div className='leftContainer'>
             {/*<div>popular games</div>*/}
-            {array && <div> {array[curIdx].gameTitle} </div>}
+            {array && <div> {array[curIdx].Name} </div>}
 
                {array &&
                 <img
                 width={"350px"} height={"350px"}
                 //src={`http://localhost:5555/${array[curIdx].gameTitle}/${array[curIdx].gameTitle}-01.png`}
-                src={`http://localhost:5555/${array[curIdx].gameId}/${array[curIdx].gameTitle}-0${mainImageIdx}.png`}
+                src={`http://localhost:5555/${array[curIdx].GameId}/${array[curIdx].Name}-0${mainImageIdx}.png`}
                 onClick={navigateToGameProfile}
                 />
                }
@@ -172,12 +172,12 @@ function PopularGame(){
                     {/*{flag && extraImages}*/}
                     {flag && extraImage.map((index) => {
                     return(
-                    <ExtraImage gameId={`${array[curIdx].gameId}`} gameTitle={`${array[curIdx].gameTitle}`} index={index} navigateToGameProfile={navigateToGameProfile}  setMainImageIdx={setMainImageIdx}/>
+                    <ExtraImage gameId={`${array[curIdx].GameId}`} gameTitle={`${array[curIdx].Name}`} index={index} navigateToGameProfile={navigateToGameProfile}  setMainImageIdx={setMainImageIdx}/>
                     )
                     })}
                 </div>
                 <div className='purchaseContainer'>
-                    {array && <div> ${array[curIdx].gamePrice} </div>}
+                    {array && <div> ${array[curIdx].Price.toPrecision(4)} </div>}
                     
                     
                     {!auth.Developer && <button onClick={buyHandler}>Buy Now</button>}
