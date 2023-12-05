@@ -92,7 +92,7 @@ export default function Register(){
     const validatePwd = (password) => {
         return password
           .toLowerCase()
-          .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{1,25}$/);
+          .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-_])(?=.*[0-9]).{1,25}$/);
     }
 
 

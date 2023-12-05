@@ -2,7 +2,7 @@ import './PostGame.css'
 import Footer from '../components/Footer';
 import {useEffect, useState, useRef} from 'react';
 import Box from '@mui/material/Box';
-
+import { useNavigate } from "react-router-dom";
 
 import {
     OutlinedInput,
@@ -29,6 +29,7 @@ const genres = [
 
 export default function PostGame(){
 
+    const navigate = useNavigate();
 
     const [auth, setAuth] = useState(null);
     useState(()=>{
@@ -232,7 +233,7 @@ export default function PostGame(){
             <header className={isFix ?'menuNavFixed postGameSection' : `menuNav postGameSection`} ref={navRef} >
                 <nav>
                     <div>
-                    <div className='title nav postGame'>Jörmungandr</div>
+                    <div className='title nav postGame' onClick={() => navigate('/home')}>Jörmungandr</div>
                     <div className='listContainer'>
                         <ul>
                             <li>Devleoper's information</li>
