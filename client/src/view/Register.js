@@ -118,9 +118,9 @@ export default function Register(){
             setUserNameMsg("");
         }else{
             if (!validateUserName(currNickname)) {
-                setUserNameMsg("please submit user name that is longer than 1 character and less than 9 characters")
+                setUserNameMsg("Please submit user name that is longer than 1 character and less than 9 characters")
             } else if(validateUserName(currNickname)){
-                setUserNameMsg("correct user name format");
+                setUserNameMsg("Correct user name format");
             }
         }
     };
@@ -135,9 +135,9 @@ export default function Register(){
             setEmailMsg("");
         }else{
             if (!validateEmail(currEmail)) {
-                setEmailMsg("please submit valid email format")
+                setEmailMsg("Please submit valid email format")
             } else if(validateEmail(currEmail)){
-                setEmailMsg("correct email format");
+                setEmailMsg("Correct email format");
             }
         }
     }
@@ -151,9 +151,9 @@ export default function Register(){
             setPasswordMsg("");
         }else{
             if (!validatePwd(currPassword)) {
-                setPasswordMsg("please submit valid password")
+                setPasswordMsg("Please submit valid password")
             } else if(validatePwd(currPassword)){
-                setPasswordMsg("correct password format");
+                setPasswordMsg("Correct password format");
             }
         }
 
@@ -168,9 +168,9 @@ export default function Register(){
             setConfirmPasswordMsg("");
         }else{
             if (password !== currPassword) {
-                setConfirmPasswordMsg("password does not match")
+                setConfirmPasswordMsg("Passwords do not match")
             } else if(validatePwd(currPassword)){
-                setConfirmPasswordMsg("password matches");
+                setConfirmPasswordMsg("Password matches");
             }
         }
 
@@ -188,12 +188,8 @@ export default function Register(){
         <div className='background'>
         <div className='title'> sign up </div>
         <div className='registercontainer'>
-        <FormGroup>
-            <FormControlLabel control={<Switch color="secondary" onChange={toggleChecked}/>} label={`${checked? 'Sign up as Developer':'Sign up as User'}`} labelPlacement="top" />
-        </FormGroup>
-        {errorMessage && <div className='errorMessage'>given email is already registerd</div>}
+        {errorMessage && <div className='errorMessage'>Email is already registerd</div>}
         <form onSubmit={handleSubmit}>
-
             <div className='innerContainer'>
                 <div className='labelContainer'>
                 <label className="userNameLabel" htmlFor="username">Enter your user name </label>
@@ -215,6 +211,7 @@ export default function Register(){
                 <input 
                 type="text" 
                 id="password"
+                placeholder='Enter password'
                 value={password}
                 onChange={onPasswordHandler}
                 />
@@ -226,6 +223,7 @@ export default function Register(){
                 <input 
                 type="text" 
                 name="confirmPassword" 
+                placeholder='Confirm password'
                 value={confirmPassword}
                 onChange={onConfirmPasswordHandler}
                 />
@@ -236,7 +234,8 @@ export default function Register(){
                 <label>Enter your email </label>
                 <input 
                 type="text" 
-                name="email" 
+                name="email"
+                placeholder='Enter email' 
                 value={email} 
                 onChange={onEmailHandler}
                 />
@@ -246,7 +245,7 @@ export default function Register(){
             <div className='innerLastContainer'>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
-                label="Controlled picker"
+                label="Date of Birth"
                 value={dateValue}
                 onChange={(newValue) => setDateValue(newValue)}
                 sx={
@@ -258,10 +257,10 @@ export default function Register(){
                 }
                 />
             </LocalizationProvider>
-            <input type="submit" />
+            <button type="submit" onClick={handleSubmit} className='submitbbutton'>Submit</button>
             <div className='lastContainer'>
-                <div className='alreadyHave'>already have an account?</div>
-                <button onClick={naviateToLogin}>sign in</button>
+                <div className='alreadyHave'>Already have an account?</div>
+                <button onClick={naviateToLogin} className='reviewbbutton'>Sign in</button>
             </div>
             
             </div>

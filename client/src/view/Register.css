@@ -30,8 +30,8 @@ body{
     border: 3px solid black;
     box-shadow: 10px 10px 2px black;
     width: 400px;
-    height: 550px;
     gap: 20px;
+    padding: 1rem;
 }
 
 form{
@@ -39,7 +39,7 @@ form{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 15px;
 }
 
 .innerContainer{
@@ -54,15 +54,14 @@ form{
     align-items: center;
     justify-content: center;
     gap: 10px;
+    padding-top: 1rem;
     position: relative;
-    top: 30px;
 }
 
 .lastContainer{
     display: flex;
-    gap: 10px;
+    flex-direction: column;
 }
-
 
 .title{
     font-family: "neo-bold";
@@ -102,35 +101,54 @@ input[type="submit"]:focus{
 }
 
 
-.userNameLabel{
-    position: relative;
-    left: -35px;
-}
-
-
-
-.confirmPasswordLabel{
-    position: relative;
-    left: -35px;
-}
-
 .labelContainer{
     display: flex;
     justify-content: flex-start;
 }
 
 .validMessage{
-    color: rgb(205, 83, 83);
+    color: black;
     font-family: "neo-norm";
     background-color: rgb(42, 245, 177);
     border-radius: 15px;
     width: 250px;
     opacity: 80%;
+    padding: .25rem
 }
 
-
-
-.lastContainer>button{
-    width: 70px;
+.invalidMessage{
+    color: black;
+    font-family: "neo-norm";
+    background-color: red;
     border-radius: 15px;
+    width: 250px;
+    opacity: 80%;
+    padding: .25rem
+}
+
+.submitbbutton {
+    background-color: plum;
+    width: 250px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    font-family: "neo-bold";
+    cursor: pointer;
+}
+
+.reviewbbutton {
+    background-color: rgb(255, 200, 104);
+    width: 250px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    font-family: "neo-bold";
+    cursor: pointer;
+    padding-top: 2px;
+}
+
+.alreadyHave {
+    padding-top: 1rem;
 }
