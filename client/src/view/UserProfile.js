@@ -153,7 +153,6 @@ export default function UserProfile(props){
         const games = transactionGames.map((game)=>(
             <div className='gamecontainer'>
                 <h2>{game.Name}</h2>
-                <div>Purchased: {game.purchaseDate.substring(5,7)}/{game.purchaseDate.substring(8,10)}/{game.purchaseDate.substring(0,4)}</div>
                 <img width={"150px"} height={"150px"} 
                     src={`http://localhost:5555/${game.GameId}/${game.Name}-01.png`}
                 />

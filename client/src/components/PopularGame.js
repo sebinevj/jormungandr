@@ -176,7 +176,7 @@ function PopularGame(props){
                     {authFlag &&
                             <button
                                 onClick={handleBuy}
-                                className="reviewbutton"
+                                className="reviewbbutton"
                             > Buy now</button>
                     }
                 </div>
