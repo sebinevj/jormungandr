@@ -1,4 +1,18 @@
+@font-face {
+    font-family: "neo-bold";
+    src: url("../fonts/VictorMonoAll/TTF/VictorMono-Bold.ttf");
+}
+
+@font-face {
+    font-family: "neo-norm";
+    src: url("../fonts/VictorMonoAll/TTF/VictorMono-Regular.ttf");
+}
+
+
+
+
 .OuterContainer{
+    
     top: 10px;
     display: flex;
     flex-direction: column;
@@ -20,6 +34,7 @@
     width: 110px;
     height: 40px;
     border: none;
+    font-family: "neo-bold";
 }
 .FirstHeader>input{
     width: 350px;
