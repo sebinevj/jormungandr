@@ -1,8 +1,10 @@
 //import db from './DB.json';
 const db = require('./DB.json');
 const GameModel = require('../model/Gamemodel');
+const UsersModel = require('../model/Usermodel')
 
 const gs = new GameModel();
+const us = new UsersModel()
 
 exports.imageloader =  async (req, res, next) =>{
 
@@ -86,4 +88,33 @@ exports.gameprofileLoader =  async (req, res, next) =>{
 
     res.send({gameProfile: result, reviews: reviewResult});
     //res.send(db.gameData[newtitle]);
+}
+
+
+exports.buyGameHandler = async(req,res)=>{
+
+    console.log("In buy game")
+
+    let result;
+    try{
+        [result] = await us.getUserId(req.body.Email)
+    }
+    catch(error){
+        console.log(error);
+    }
+    
+
+    const transactionRow = {
+        GameId: req.body.GameId,
+        UserId: result.UserId,
+    }
+    
+    try{
+        revId = await gs.insertNewTransaction(transactionRow)
+    }
+    catch(error){
+        console.log(error);
+    }
+
+    res.send({case:true});
 }

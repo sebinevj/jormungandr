@@ -102,14 +102,12 @@ export default function UserProfile(props){
                 //got Transaction data 
                 console.log("Data")
                 console.log(data);
-                console.log(data.transaction)
-                console.log(data.transaction[0].Name)
+                console.log(data.userData)
 
                 setTransactionGames(data.transaction)
                 setUserName(data.userData.Name)
                 setUserEmail(data.userData.Email)
                 setUserLastPurchase(data.userData.LastPurchase)
-
             });
 
         }
@@ -171,9 +169,9 @@ export default function UserProfile(props){
                     <div className='infocontainer'>
                         <h2>{userName.toUpperCase()}</h2>
                         <div>Email: {userEmail}</div>
-                        <div>Last Purchase: {userLastPurchase.substring(5,7)}/{userLastPurchase.substring(8,10)}/{userLastPurchase.substring(0,4)}</div>
+                        {userLastPurchase != null ? <div>Last Purchase: {userLastPurchase.substring(5,7)}/{userLastPurchase.substring(8,10)}/{userLastPurchase.substring(0,4)}</div> :  <div>Last Purchase: No purchased games</div>}
                     </div>
-                <h1>Purchased Games</h1>
+                {userLastPurchase != null && <h1>Purchased Games</h1>}
                         <div className='gameProfileBody'>
                             <br></br>
                             {games}

@@ -23,6 +23,8 @@ function Header(props){
     function handleSignOut(){
         sessionStorage.removeItem("session");
         setAuth(null);
+        navigate(`/login`);
+
     }
 
     function handleProfile(){

@@ -1,5 +1,7 @@
-.PopularGameContainer{
-  
+
+.name {
+    font-size: 25px;
+    padding: .5rem;
 }
 
 .buttonOnSide{
@@ -27,6 +29,7 @@
     background-color: tomato;
     padding-left: 20px;
     padding-right: 20px;
+    max-width: 800px
 }
 
 .PopularGameContainer .pictureContainer{
@@ -42,6 +45,10 @@
     justify-content: center;
     top: 0px;
     gap: 20px;
+}
+
+.PopularGameContainer .bottomContainer{
+    padding: 1rem;
 }
 
 .PopularGameContainer .extraImagesContainer{
@@ -78,10 +85,11 @@ img{
     border-radius: 15px;
 }
 
-.purchaseContainer>button{
-    border: none;
-    border: 1px solid black;
-    border-radius: 15px;
-    width: 80px;
-    height: 60px;
+.reviewbutton {
+    background-color: lightgrey;
+    color: black;
+    padding: 10px 60px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    cursor: pointer;
 }

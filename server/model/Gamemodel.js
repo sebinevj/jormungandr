@@ -86,6 +86,19 @@ module.exports = class GameModel{
         }));
 
     }
+
+
+    insertNewTransaction(data){
+        let stmt = `Insert into Transaction(GameId, UserId, purchaseDate) values(?,?,NOW());`
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt,[data.GameId, data.UserId])
+                .then((rows, fieldData) => {
+                    resolve(rows);
+                })
+                .catch(err => console.log(err))
+        }));
+
+    }
     
     //call procedure best_rated
     getBestRatedGames(){

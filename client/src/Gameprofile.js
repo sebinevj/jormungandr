@@ -26,6 +26,8 @@ export default function GameProfile(){
     const [gameName, setGameName] = useState("")
     const [auth, setAuth] = useState(null);
 
+    const [transactions, setTransactions] = useState([])
+
 
     const [init, setInit] = useState(true)
     
@@ -41,7 +43,8 @@ export default function GameProfile(){
         console.log("session data:",  JSON.parse(sessiondata));
 
         if (init) {
-            setInit(false)
+            setInit(false);
+
             fetch('http://localhost:5555/requestgameprofile', {
             method: 'POST',
             body: JSON.stringify({id: currgameId}),
@@ -59,6 +62,33 @@ export default function GameProfile(){
     },[init]);
 
 
+    useEffect(() => {
+        if (auth) {
+            fetch('http://localhost:5555/getusertransactions', {
+                method: 'POST',
+                body: JSON.stringify({Email: auth.userEmail}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    },
+                })
+                .then(res => res.json())
+                .then((data) => {
+                    console.log(data)
+                    let ids = []
+                    for (let i = 0; i < data.transactions.length; i++){
+                        ids.push(String(data.transactions[i].GameId))
+                    }
+                    console.log(ids)
+                    setTransactions(ids)
+                    if (transactions.includes(currgameId)) {
+                        console.log("YES")
+                    }
+                });
+        }
+    },[auth])
+
+
+
 
     useEffect(()=>{
         //after data arrive, make developer description and sysRequirments sections
@@ -69,14 +99,11 @@ export default function GameProfile(){
 
 
     function createReview() {
-        console.log("In create Review")
-        console.log(text)
-        console.log(value)
-
-        console.log(auth)
-
-
-        fetch('http://localhost:5555/postreviewinfo',{
+        if(!auth){
+            alert("You must login to submit a review");
+        }
+        else {
+            fetch('http://localhost:5555/postreviewinfo',{
                 method: 'POST',
                 body:JSON.stringify({GameId: currgameId, Description: text, Rating: value, Email: auth.userEmail}),
                 headers: {
@@ -84,13 +111,33 @@ export default function GameProfile(){
                 }
             })
             .then(res => res.json())
-            .then((data) => {
+            .then(() => {
                 console.log("done")
             })
+        }
     }
 
     function handleBuy() {
-        console.log("Bought!")
+        if(!auth){
+            alert("You must login to purchase a game");
+        }
+        else if (transactions.includes(currgameId)){
+            alert("You already bought this game");
+        }
+        else{
+            fetch('http://localhost:5555/buygame',{
+                method: 'POST',
+                body:JSON.stringify({GameId: currgameId, Email: auth.userEmail}),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(res => res.json())
+            .then(() => {
+                console.log("done")
+                alert(`${gameName} bought successfully`);
+            })
+        }
     }
 
 
@@ -136,7 +183,7 @@ export default function GameProfile(){
                             <button
                                 onClick={handleBuy}
                                 className="reviewbutton"
-                            > BUY NOW</button>
+                            > Buy now</button>
                         </div>
 
                     </div>

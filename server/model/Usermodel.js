@@ -106,8 +106,25 @@ module.exports = class UsersModel{
     //@data represnets UserID 
     UserTransactions(data)
     {
-        console.log("Usermodel.UserTransactions()")
         let stmt = `SELECT ts.purchaseDate, ga.Name, ga.GameId FROM Transaction as ts 
+        Join Game as ga 
+        on ts.GameId = ga.GameId
+        where UserId = ?`
+
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt, [data])
+                .then((rows, fieldData) => {
+                    resolve(rows); // return data
+                })
+                .catch(err => console.log(err))
+                
+        }));
+
+    }
+
+    UserTransactionsIdOnly(data)
+    {
+        let stmt = `SELECT ga.GameId FROM Transaction as ts 
         Join Game as ga 
         on ts.GameId = ga.GameId
         where UserId = ?`

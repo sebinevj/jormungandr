@@ -5,7 +5,6 @@ import ExtraImage from './ExtraImage';
 
 function PopularGame(){
 
-   
 
     const [flag, setTempFlag] = useState(false);
     const [curIdx, setcurIdx] = useState(0);
@@ -17,6 +16,8 @@ function PopularGame(){
 
     //used for saving a session 
     const [auth, setAuth] = useState(null);
+
+    const [transactions, setTransactions] = useState([])
 
 
     //used for saving a session 
@@ -59,6 +60,28 @@ function PopularGame(){
         setAuth(JSON.parse(data));
        
     },[]);
+    
+    useEffect(() => {
+        if (auth) {
+            fetch('http://localhost:5555/getusertransactions', {
+                method: 'POST',
+                body: JSON.stringify({Email: auth.userEmail}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    },
+                })
+                .then(res => res.json())
+                .then((data) => {
+                    console.log(data)
+                    let ids = []
+                    for (let i = 0; i < data.transactions.length; i++){
+                        ids.push(String(data.transactions[i].GameId))
+                    }
+                    console.log(ids)
+                    setTransactions(ids)
+                });
+        }
+    },[auth])
 
 
 
@@ -114,11 +137,26 @@ function PopularGame(){
     
     };
 
-    function buyHandler(){
+    function handleBuy(){
         if(!auth){
-            alert("you must login to purchase a game");
-        }else{
-
+            alert("You must login to purchase a game");
+        }
+        else if (transactions.includes(array[curIdx].GameId)){
+            alert("You already bought this game");
+        }
+        else{
+            fetch('http://localhost:5555/buygame',{
+                method: 'POST',
+                body:JSON.stringify({GameId: array[curIdx].GameId, Email: auth.userEmail}),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(res => res.json())
+            .then(() => {
+                console.log("done")
+                alert(`${array[curIdx].Name} bought successfully`);
+            })
         }
     }
 
@@ -135,7 +173,7 @@ function PopularGame(){
             <div className='pictureContainer'>
             <div className='leftContainer'>
            
-            {array && <div> {array[curIdx].Name} </div>}
+            {array && <div className="name"> {array[curIdx].Name} </div>}
 
                {array &&
                 <img
@@ -157,10 +195,15 @@ function PopularGame(){
                     })}
                 </div>
                 <div className='purchaseContainer'>
-                    {array && <div> ${array[curIdx].Price.toPrecision(4)} </div>}
+                    {array && <div className="name"> ${array[curIdx].Price.toFixed(2)} </div>}
                     
                     
-                    {authFlag && <button onClick={buyHandler}>Buy Now</button>}
+                    {authFlag &&
+                            <button
+                                onClick={handleBuy}
+                                className="reviewbutton"
+                            > Buy now</button>
+                    }
                 </div>
             </div>
             </div> 

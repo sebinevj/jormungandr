@@ -11,8 +11,8 @@ const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 5555; 
-const {imageloader, gameprofileLoader, nextgameIdHandler} = require('./controller/GameController');
-const {loginHandler, registerHandler, getUserIdHandler, getPurchasedGameHandler} = require('./controller/UserController');
+const {imageloader, gameprofileLoader, nextgameIdHandler, buyGameHandler} = require('./controller/GameController');
+const {loginHandler, registerHandler, getUserIdHandler, getPurchasedGameHandler, getTransactionsByEmail} = require('./controller/UserController');
 const {getDeveloperIdHandler, getAllDeveloperColumnHandler, getDeveloperHandler, submitGameHandler} = require('./controller/DeveloperController');
 const {submitReviewHandler} = require('./controller/ReviewController');
 
@@ -116,6 +116,9 @@ app.post("/postgameinfo", submitGameHandler);
 
 app.post("/postreviewinfo", submitReviewHandler);
 
+app.post("/buygame", buyGameHandler);
+
+app.post("/getusertransactions", getTransactionsByEmail)
 
 
 app.post("/uploadimages", upload.array("files"), (req,res)=>{
