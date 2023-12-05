@@ -146,10 +146,12 @@ function Home(){
                 <PopularGame
                     type="popular"
                 />
+                {/*}
                 <SmallGame
                     type="bestRated"
                 />
-                
+                */}
+                <br></br>
                 <Footer/>
             </div>
         </div>
