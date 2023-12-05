@@ -40,6 +40,12 @@ const storage = multer.diskStorage({
         cb(null, directory);
     },
     filename: function(req, file, cb) {
+
+        let idx = 0;
+        //const name = 
+         
+        file.originalname = `${fileName}-0${idx++}.JPG`;
+        
         cb(null, file.originalname)
     }
 });
@@ -49,6 +55,7 @@ const upload = multer({storage});
 //used to store generated GameID from DataBase and name filelocation for images
 //GameID will always gets assigned before it gets used to make file directories for images.
 let GameID;
+let fileName;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -111,7 +118,11 @@ app.get('/getnextgameid',nextgameIdHandler);
 //     res.send({case:true});
 // })
 
-app.post("/postgameinfo", submitGameHandler);
+app.post("/postgameinfo", submitGameHandler,(req,res)=>{
+    GameID = req.body.id;
+    fileName = req.body.gameInfo.gameTable.title;
+    res.send({case:true});
+});
 
 
 app.post("/postreviewinfo", submitReviewHandler);

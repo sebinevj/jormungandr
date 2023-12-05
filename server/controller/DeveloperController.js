@@ -70,7 +70,7 @@ exports.getDeveloperHandler = async(req,res)=>{
 //             system: String,
 //         },   
 //     }
-exports.submitGameHandler = async(req,res)=>{
+exports.submitGameHandler = async(req,res,next)=>{
 
   
     GameID = req.body.id;
@@ -113,38 +113,54 @@ exports.submitGameHandler = async(req,res)=>{
     console.log("gameRow", gameRow);
     //with created SysReqId, retrived devId and req.body.gameInfo.gameTable; insert a new row into Game Table 
     
-    try{
-        devId = await ga.insertNewGame(gameRow)
-    }
-    catch(error){
-        console.log(error);
-    }
 
-    //get most recent made GameId 
-    let mostRecentGameId;
-    try{
-        [mostRecentGameId] = await ga.getMostRecentGameId(gameRow)
-    }
-    catch(error){
-        console.log(error);
-    }
-
-    console.log("mostRecentGameId", mostRecentGameId);
-
-    //insert gamegenres with req.body.gameInfo.genre with mostRecentGameId.GameId
-
-    for(genreId of  req.body.gameInfo.genre){
-        console.log("inserting genreId", genreId)
+    async function insertnewgame(){
         try{
-            result = await gen.insertGameGenreRow(genreId, mostRecentGameId)
+            devId = await ga.insertNewGame(gameRow)
         }
         catch(error){
             console.log(error);
         }
     }
+
+    
+
+    //get most recent made GameId 
+
+
+    let mostRecentGameId;
+    async function getmostRecentGameId(){
+        try{
+            [mostRecentGameId] = await ga.getMostRecentGameId(gameRow)
+        }
+        catch(error){
+            console.log(error);
+        }
+    
+        console.log("mostRecentGameId", mostRecentGameId);
+        insertGameGenre(mostRecentGameId);
+    }
+
+
+    
+    //insert gamegenres with req.body.gameInfo.genre with mostRecentGameId.GameId
+    async function insertGameGenre(mostRecentGameId){
+        for(genreId of  req.body.gameInfo.genre){
+            console.log("inserting genreId", genreId, mostRecentGameId.GameId)
+            try{
+                result = await gen.insertGameGenreRow(genreId, mostRecentGameId.GameId)
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+    }
+
+    insertnewgame();
+    getmostRecentGameId();
     
     console.log("submitGameHandler", mostRecentSysReqId);
 
-    res.send({case:true});
-
+    //res.send({case:true});
+    next();
 }

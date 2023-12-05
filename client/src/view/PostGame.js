@@ -181,6 +181,7 @@ export default function PostGame(){
 
         getMostRecentGameId().then((retrivedGameId)=>{
            
+            console.log("retrivedGameId :", retrivedGameId)
             //after retriving moust Recent GameId, save that in to server.js local variable in order to
             //make dir according to upload images' GameId
             
@@ -188,7 +189,7 @@ export default function PostGame(){
             //to save into local variable in server.js for future images FormData
             fetch('http://localhost:5555/postgameinfo',{
                 method: 'POST',
-                body:JSON.stringify({id: retrivedGameId.GameId.GameId + 1, gameInfo: gameInfo}),
+                body:JSON.stringify({id: retrivedGameId.GameId + 1, gameInfo: gameInfo}),
                 headers: {
                     'Content-Type': 'application/json',
                 }
