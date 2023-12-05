@@ -2,6 +2,8 @@ import React, { useState, useEffect} from 'react';
 import "./PopularGame.css";
 import { useNavigate } from "react-router-dom";
 import ExtraImage from './ExtraImage';
+import { FaChevronLeft } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
 
 function PopularGame(){
 
@@ -166,7 +168,7 @@ function PopularGame(){
         <div className='PopularGameContainer'>
            
             <div className='backgroundContainer'>
-            <button className='buttonOnSide' onClick={() => ButtonHandler(-1)}>left</button>  
+            <button className='buttonOnSide' onClick={() => ButtonHandler(-1)}><FaChevronLeft size={40}/></button>  
 
             <div className='contentContainer'>  
 
@@ -214,7 +216,7 @@ function PopularGame(){
             </div>
             </div> 
 
-            <button className='buttonOnSide' onClick={() => ButtonHandler(1)}>right</button>
+            <button className='buttonOnSide' onClick={() => ButtonHandler(1)}><FaChevronRight size={40}/></button>
             </div>
         </div>
     )

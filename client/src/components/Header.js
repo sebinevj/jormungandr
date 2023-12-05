@@ -50,7 +50,7 @@ function Header(props){
         <div className="OuterContainer">
             <div className="FirstHeader">
                 <button onClick={() => navigate('/home')}>
-                    logo
+                Jörmungandr
                 </button>
                 {auth &&<button onClick={() => handleProfile()}>profile</button>}
                 
