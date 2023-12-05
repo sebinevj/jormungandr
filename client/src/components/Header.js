@@ -48,17 +48,19 @@ function Header(props){
     return (
         <>
         <div className="OuterContainer">
-            <div className="FirstHeader">
-                <button onClick={() => navigate('/home')}>
-                Jörmungandr
-                </button>
-                {auth &&<button onClick={() => handleProfile()}>profile</button>}
-                
-                {!auth  && <button onClick={() => navigate('/login')}>sign in</button>}
-                {!auth  && <button onClick={() => navigate('/register')} >sign up</button>}
-                {auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
-                
-                {auth && auth.Developer && <button onClick={()=>navigate('/postgame')} >post a game</button>}
+                <div className="FirstHeader">
+                  
+                        <button onClick={() => navigate('/home')}>
+                            Jörmungandr
+                        </button>
+           
+              
+                    {auth &&<button onClick={() => handleProfile()}>profile</button>}
+                    {!auth  && <button onClick={() => navigate('/login')}>sign in</button>}
+                    {!auth  && <button onClick={() => navigate('/register')} >sign up</button>}
+                    {auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
+                    {auth && auth.Developer && <button onClick={() => navigate('/postgame')} >post a game</button>}
+          
             </div>
             {/* 
             <div className="SecondHeader">
