@@ -13,29 +13,73 @@ exports.loginHandler = async (req, res, next) => {
     }
 
 
-    let state;
-    //given email was registered
-    if(result){
-        //compare retrived password with req.body.password
-        //console.log("comparing..",req.body.password, result.password)
+    async function hashPassword(){
+        let hashedPW;
+        try{
+            [hashedPW] = await us.hashPassword(req.body.password);
+        }catch(error){
+            console.log(error);
+        }
+        isPasswordMatch(hashedPW);
+    }
 
-        //on success
-        if(req.body.password === result.password){
+    async function isPasswordMatch(hashedPW){
+
+        //console.log("login handler:", Object.values(hashedPW)[0], result.password);
+        if(Object.values(hashedPW)[0] === result.password){
            
             state = {flag: true, message:""};
            
         }else{
             state = {flag: false, message:"password does not match"};
         }
-    }else{
-        state = {flag: false, message:"email was not registered"};
+        res.send({state, result});
     }
 
-    res.send({state, result});
+
+    let state;
+    //given email was registered
+    if(result){
+        //compare retrived password with hashed(req.body.password)
+        // let hashedPW;
+        // try{
+        //     [hashedPW] = await us.hashPassword(req.body.password);
+        // }catch(error){
+        //     console.log(error);
+        // }
+        hashPassword();
+
+
+        //on success
+        // if(req.body.password === result.password){
+           
+        //     state = {flag: true, message:""};
+           
+        // }else{
+        //     state = {flag: false, message:"password does not match"};
+        // }
+
+    }else{
+        state = {flag: false, message:"email was not registered"};
+        res.send({state, result});
+    }
+
+    
    
 };
 
 exports.registerHandler = async(req,res,next)=>{
+
+
+    console.log("registerHandler: password is ", req.body.password);
+    let hashedPW;
+    try{
+        //console.log("searching for ", req.body.email);
+        [hashedPW] = await us.hashPassword(req.body.password);
+    }catch(error){
+        console.log(error);
+    }
+
 
     let user_id;
     try{
@@ -53,6 +97,8 @@ exports.registerHandler = async(req,res,next)=>{
         console.log("before registering... ", req.body, req.body.DOB.slice(0,10));
 
         try{
+            console.log("hashedPW is ", JSON.stringify(hashedPW), Object.values(hashedPW)[0]);
+            req.body.password = Object.values(hashedPW)[0];
             await us.registerUser(req.body);
         }catch(error){
             console.log(error);

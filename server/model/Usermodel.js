@@ -73,7 +73,22 @@ module.exports = class UsersModel{
         }));
     }
 
+    //@data represents password from user
+    hashPassword(data){
+        let stmt = `select md5(?)`;
+        return (new Promise((resolve, reject) => {
+            connection.execute(stmt, [data])
+                .then(([rows, fieldData]) => {
+                    resolve(rows); // return data
+                })
+                .catch(err => console.log(err))
+                
+        }));
+    }
+
+
     registerUser(data){
+
         let stmt = `Insert Into User(Email, password, Name, DOB) value (?,?,?,?)`;
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data.email, data.password, data.userName, data.DOB.slice(0,10)])
