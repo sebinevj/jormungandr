@@ -1,5 +1,112 @@
 .gameProfileBackgroundContainer{
     display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+
+.gameProfileBody{
+    display: flex;
+    flex-direction: column;
+}
+
+.contentContainer{
+    display: flex;
+}
+
+.revContainer{
+    display: flex;
+}
+
+.leftcontainercontent {
+    padding: 1rem;
+}
+
+.rightcontainercontent {
+    padding-top: 1rem;
+}
+
+.extraImagesContainer {
+    gap: 10px;
+}
+
+.leftcontainerreview {
+    justify-content: left;
+    align-content: left;
+    padding-right: 10rem;
+}
+
+.rightcontainerreview {
+    justify-content: left;
+    align-content: left;
+    padding-top: 7rem;
+
+}
+
+.gameProfileDescription{
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+    background-color: white;
+    max-width: 300px;
+    padding: 1rem;
+}
+
+.developerContainer{
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+.sysReqContainer{
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+.createReviewContainer {
+    display: flex;
+    flex-direction: column;   
+    gap: 3px;
+    position: relative;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 15px;
+    background-color: lightgrey;
+    padding: .5rem;
+    width: auto;
+}
+
+.reviewbutton {
+    background-color: tomato;
+    color: white;
+    padding: 10px 60px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    cursor: pointer;
+}
+
+.buyButton {
+    padding-left: 14rem;
+}
+
+.reviewtext{
+    width: 300px;
+    height: 100px;
+    outline: none;
+    resize: none; 
+    border-radius: 9px;
+}
+
+
+
+
+/*
+.gameProfileBackgroundContainer{
+    display: flex;
+    flex-direction: column;
     justify-content: center; 
     align-items: center;
 }
@@ -8,11 +115,18 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    justify-content: center; 
+    align-items: center;
 }
 
-.gameProfileBody .contentContainer{
-    display: flex;
-    gap: 10px;
+.reviewbutton {
+background-color: black;
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
 }
 
 
@@ -23,6 +137,19 @@
 }
 
 .contentContainer .leftContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.reviewContainer .rightContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reviewContainer .leftContainer{
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -70,6 +197,7 @@
     box-shadow: 1px 1px 1px black;
     border-radius: 15px;
 }
+
 .createReviewContainer{
     display: flex;
     flex-direction: column;
@@ -94,3 +222,4 @@
     display: flex;
     gap: 20px;
 }
+*/

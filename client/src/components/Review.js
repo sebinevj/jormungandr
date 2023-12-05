@@ -10,11 +10,9 @@ export default function Review(props){
     function date(props){
         
         let date = props.slice(0,9).split( /[-]/);
-        console.log("date...", date);
         date[1] -=1;
         let jsDate = new Date(...date);
         const styledDate = jsDate.toLocaleString('en-us',{month:'short', year:'numeric', day:'numeric'});
-        console.log("after date...", jsDate, jsDate.toLocaleString('en-us',{month:'short', year:'numeric', day:'numeric'}), typeof(jsDate.toLocaleString('en-us',{month:'short', year:'numeric', day:'numeric'})));
         return(
             <div>
                 {styledDate}
