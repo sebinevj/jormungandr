@@ -1,16 +1,25 @@
 import PopularGame from './components/PopularGame';
+import SmallGame from './components/SmallGame';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import React, { useState, useEffect} from 'react';
 import './Home.css';
+import {
+    InputLabel,
+    MenuItem,
+    Select,
+    FormControl,
+  } from "@mui/material";
 
 function Home(){
 
-    const [curIdx, setcurIdx] = useState([0,1,2]);
-    const [array, setData] = useState(null);
+    //const [curIdx, setcurIdx] = useState([0,1,2]);
+    //const [array, setData] = useState(null);
 
     //allGameIds has all of existing GameIds in DataBase
-    const [allGameIds, setAllGameIds] = useState([]);
+    //const [allGameIds, setAllGameIds] = useState([]);
+
+    const [type, setType] = useState("all");
    
 
     /**
@@ -19,20 +28,23 @@ function Home(){
     const [auth, setAuth] = useState(null);
 
     useEffect(() => {
+
+        /*
         fetch('http://localhost:5555/loadimages', {
             method: 'POST',
-            body: JSON.stringify({type: "onSale"}),
+            body: JSON.stringify({type: type}),
             headers: {
               'Content-Type': 'application/json',
             },
         })
         .then(res => res.json())
-        .then(function(data){
+        .then((data) => {
+            console.log("at home...", data);
             setData(data.onsaleGame);
             setAllGameIds(data.getAllGamesId)
             console.log("at home...", data);
         });
-
+        */
 
     
         //get session of user, if there is no session auth will be null
@@ -43,14 +55,13 @@ function Home(){
     }, []);
 
 
-   
-    useEffect(() => {
-        if(array !== null){
-            //console.log("at ...", array[0].gameTitle);
-        }
+    const handleChange = (event) => {
+        setType(event.target.value);
+        console.log(type)
+    };
 
-    }, [array]);
 
+    /*
     function gamesOnSale(){
 
         function buttonClickHandler(param){
@@ -60,8 +71,6 @@ function Home(){
             }else{
 
             }
-
-
            
         }
 
@@ -103,17 +112,44 @@ function Home(){
             </>
         )
     }
-
+    */
 
     return (
         <div className='totalWrapper'>
             <div className='backgroundHome'>
                 <Header/>
-                <div>Popular Games</div>
-                <PopularGame />
-                <div>On Sale</div>
-                {gamesOnSale()}
-                {allGameIds && displayAllGames()}
+                {/*
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Games</InputLabel>
+                    <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={type}
+                    label="games"
+                    onChange={handleChange}
+                    >
+                    <MenuItem value={"all"}>All Games</MenuItem>
+                    <MenuItem value={"popular"}>Most Popular</MenuItem>
+                    <MenuItem value={"bestRated"}>Best Rated</MenuItem>
+                    </Select>
+                </FormControl>
+    */}
+                <h1>All Games</h1>
+                <PopularGame
+                    type="all"
+                />
+                <h1>Best Rated</h1>
+                <PopularGame
+                    type="bestRated"
+                />
+                <h1>Popular Games</h1>
+                <PopularGame
+                    type="popular"
+                />
+                <SmallGame
+                    type="bestRated"
+                />
+                
                 <Footer/>
             </div>
         </div>

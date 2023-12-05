@@ -1,0 +1,22 @@
+.onSaleContainer{
+    display: flex;
+    gap: 10px;
+}
+
+.onSaleContainer>button{
+    position: relative;
+    top: 60px;
+    width: 50px;
+    height: 40px;
+}
+
+.onSaleContainer .onSaleGameContainer{
+    display: flex;
+    gap: 15px;
+}
+
+.onSaleContainer .onSaleGameContainer .onSaleGame{
+    display: flex;
+    flex-direction: column;
+}
+

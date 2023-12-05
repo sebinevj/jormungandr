@@ -111,8 +111,6 @@ exports.getPurchasedGameHandler = async(req,res)=>{
 
 exports.getTransactionsByEmail = async(req,res)=>{
 
-    console.log("In transactions")
-
     let result;
     try{
         [result] = await us.getUserId(req.body.Email)

@@ -51,7 +51,7 @@ module.exports = class GameModel{
 
 
     getAllGamesId(){
-        let stmt = `select GameId, Name from Game;`
+        let stmt = `select GameId, Name, Price, Description from Game;`
         return (new Promise((resolve, reject) => {
             connection.execute(stmt)
                 .then((rows, fieldData) => {

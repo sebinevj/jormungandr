@@ -8,19 +8,23 @@ const us = new UsersModel()
 
 exports.imageloader =  async (req, res, next) =>{
 
+    if(req.body.type == "all"){
 
-    let result;
-    try{
-        [result] = await gs.getAllGamesId();
+        console.log("all")
+
+        let result;
+        try{
+            [result] = await gs.getAllGamesId();
+        }
+        catch(error){
+            console.log(error);
+        }
+
+        res.send(result);
+
     }
-    catch(error){
-        console.log(error);
-    }
-
-
-    if(req.body.type == "popular"){
-        //console.log("popular in imageloader", JSON.stringify(db.gameData));
-        //res.send(db.gameData.filter((game) =>  game.gameId % 2 == 0))
+    else if(req.body.type == "popular"){
+        console.log("popular")
 
         try{
             [result] = await gs.getMostPopular();
@@ -29,12 +33,31 @@ exports.imageloader =  async (req, res, next) =>{
             console.log(error);
         }
 
-        //console.log("popular", JSON.stringify(result[0]));
         res.send(result[0]);
     }
     else if(req.body.type == "onSale"){
-        console.log("onSale");
+
+        let result;
+        try{
+            [result] = await gs.getAllGamesId();
+        }
+        catch(error){
+            console.log(error);
+        }
+
         res.send({onsaleGame: db.gameData.slice(0,5), getAllGamesId: result})
+    }
+    else if(req.body.type == "bestRated"){
+        console.log("bestRated");
+
+        try{
+            [result] = await gs.getBestRatedGames();
+        }
+        catch(error){
+            console.log(error);
+        }
+        res.send(result[0]);
+        
     }
 
 }
