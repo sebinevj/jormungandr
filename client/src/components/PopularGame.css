@@ -20,7 +20,20 @@
     gap: 20px;
 }
 
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 .PopularGameContainer .contentContainer{
+
+
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
     display: flex;
     flex-direction: column;
     border: 3px solid black;
