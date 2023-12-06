@@ -4,6 +4,8 @@ Welcome to jormungandr, a platform that brings together gamers and developers in
 ## Getting Started
 To get started with jormungandr, follow these simple steps:
 
+*Email for config file*
+
 1. prepare two terminals
 
 2. Terminal 1:
