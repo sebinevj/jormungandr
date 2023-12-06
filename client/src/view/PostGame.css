@@ -15,23 +15,64 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
 }
 
 .insideInfoContainer>label{
     padding:1rem;
 }
 
+div>div>label>text {
+    font-size: large;
+}
+
+div>div>label>span {
+    font-size: large;
+}
+
 .devInfoContainer>div>label>text::after{
     content: "";
     display: block;
 }
+div>div>label>input{
+    margin-top: 5px;
+    width: 400px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    padding: 5px;
+}
+
 
 .devInfoContainer>div>label>textarea{
+    margin-top: 5px;
     width: 400px;
     height: 200px;
     resize: none;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    padding: 5px;
+}
+
+.devInfoContainer>div>label>textarea:focus{
+    width: 400px;
+    height: 200px;
+    resize: none;
+    border-radius: 15px;
+    border: 2px solid tomato;
+    box-shadow: 2px 2px 1px tomato;
+    outline: none;
+  
+}
+
+div>div>label>input:focus{
+    width: 400px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid tomato;
+    box-shadow: 2px 2px 1px tomato;
+    outline: none;
 }
 
 .postgameButton{

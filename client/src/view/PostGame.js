@@ -270,7 +270,7 @@ export default function PostGame(){
                     </label>
                 </div>
                 <div className="insideInfoContainer">
-                    <FormControl sx={{ m: 1, width: 500 }}>
+                    <FormControl sx={{ m: 1, width: 400}}>
                         <InputLabel>Select Genre</InputLabel>
                         <Select
                             multiple
@@ -330,7 +330,7 @@ export default function PostGame(){
                     </div>
                     <div className="box">
                         <Box>
-                            <FormControl sx={{ m: 1, width: 500 }}>
+                            <FormControl sx={{ m: 1, width: 400 }}>
                                 <InputLabel id="demo-simple-select-label">Platform</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
