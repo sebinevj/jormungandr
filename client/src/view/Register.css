@@ -101,6 +101,8 @@ input[type="submit"]:focus{
 }
 
 
+
+
 .labelContainer{
     display: flex;
     justify-content: flex-start;
@@ -139,6 +141,18 @@ input[type="submit"]:focus{
 
 .reviewbbutton {
     background-color: rgb(255, 200, 104);
+    width: 250px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    font-family: "neo-bold";
+    cursor: pointer;
+    padding-top: 2px;
+}
+
+.homeButton {
+    background-color: antiquewhite;
     width: 250px;
     height: 25px;
     border-radius: 15px;

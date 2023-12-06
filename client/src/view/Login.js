@@ -94,6 +94,9 @@ export default function Login(){
     function naviateToRegister(){
         navigate('/register');
     }
+     function navigateHome(){
+        navigate('/home');
+    }
 
 
 
@@ -129,6 +132,7 @@ export default function Login(){
             <div className='lastContainer'>
                 <div className='alreadyHave'>Don't have an account?</div>
                 <button onClick={naviateToRegister} className='reviewbbutton'>Register</button>
+                <button onClick={navigateHome} className='homeButton'>Continue as guest</button>
             </div>
 
             </div>
