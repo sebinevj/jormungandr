@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
     destination: function(req, file, cb) {
 
         //make a temporary dir
-        const directory =`uploads/${GameID}`;
+        const directory =`images/${GameID}`;
         //check if the temporary dir exist, if it doesn't create one
         if (!fs.existsSync(directory)) {
             fs.mkdirSync(directory, { recursive: true })
@@ -61,7 +61,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './images')));
-app.use(express.static(path.join(__dirname, './uploads')));
+//app.use(express.static(path.join(__dirname, './uploads')));
 /*
 app.use(session({
     store: new RedisStore({ client: redisClient }),
