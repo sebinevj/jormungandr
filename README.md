@@ -6,9 +6,15 @@ To get started with jormungandr, follow these simple steps:
 
 1. prepare two terminals
 
-2.  run  /server/node run server.js on one terminal
+2. Terminal 1:
+    run  cd /server
+    node install express
+    node server.js
 
-3.  run  /client/npm start on another terminal
+3. Terminal 2:
+    run cd /client
+    npm install
+    npm start
 
 ## Features
 ### For Users
@@ -23,14 +29,13 @@ To get started with jormungandr, follow these simple steps:
 ### For Developers
 1. Post Your Games:
 
-- Developers can showcase their games by posting them on GameHub.
+- Developers can showcase their games by posting them on Jormungandr.
 - Provide detailed information about your game, including screenshots and descriptions.
 2. Engage with the Community:
 
 - Receive feedback from users through ratings and reviews.
-- Interact with users who have purchased and played your games.
 ## Dashboard
-The GameHub dashboard provides an intuitive interface to visualize the current games posted by developers. Users can easily browse through the collection of games, view ratings, and make informed decisions about their next gaming experience.
+The Jormungandr dashboard provides an intuitive interface to visualize the current games posted by developers. Users can easily browse through the collection of games, view ratings, and make informed decisions about their next gaming experience.
 
 ### Technologies Used
 #### Frontend: 
