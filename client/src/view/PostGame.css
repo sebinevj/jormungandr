@@ -1,102 +1,37 @@
-/*
 .wrapper{
-    display: flex;
-    flex-direction: column;
-}
-*/
-
-.menuNav{
-    position: static;
-}
-
-.menuNavFixed{
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    background-color: antiquewhite;
-}
-
-
-.postGameSection>nav{
-    height: 60px;
-}
-
-.postGameSection>nav>div>.postGame{
-    margin-left: 20px;
-}
-
-.postGameSection>nav::after{
-    clear: both;
-    content: "";
-    display: table;
-}
-.postGameSection>nav>.container{
-   margin-left: 10px;
-}
-
-.postGameSection>nav>.listContainer{
-    margin-top: 10px;
-}
-
-.postGameSection>nav>div>div>ul{
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    padding-left: 20px;
-    padding-top: 15px;
-}
-.postGameSection>nav>ul>li{
-    float: left;
-    
-}
-
-.postGame{
-    float: left;
-}
-
-
-
-
-/*contents*/
-/*devInfoSection */
-.devInfoSection{
-    height: 400px;
-    min-height: 400px;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
 }
 
 .devInfoContainer{
     display: flex;
     flex-direction: column;
-    
     gap: 30px;
+    padding-top: 4rem;
 }
 
-.devInfoContainer>div{
+.insideInfoContainer {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+
 }
 
-.devInfoContainer>div>label::after{
-    content: "";
-    display: block;
+.insideInfoContainer>label{
+    padding:1rem;
 }
-
 
 .devInfoContainer>div>label>text::after{
     content: "";
     display: block;
 }
 
-
 .devInfoContainer>div>label>textarea{
     width: 400px;
     height: 200px;
     resize: none;
-}
-
-.devInfoSection>.devInfoContainer{
-    margin-top: 100px;
 }
 
 .postgameButton{
@@ -107,46 +42,59 @@ button>span{
     display: flex;
 }
 
-
 /*sysReqSection*/
 .sysReqSection{
-    height: 400px;
-    margin-top:150px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-bottom: 100px;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.insideSys{
+    display: flex;
+    flex-direction: column;
 }
 
 .sysReqSection>div>label{
     display: block;
-    margin-top: 20px;
-    height: 80px;
-   
+    margin-top: 20px;   
+    padding-bottom: 1.5rem;
+}
+
+.box{
+    padding-top: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .sysReqSection>div>label>span{
     display: block;
+    align-items: center;
 }
 
-.sysReqSection>div>.buttonContainer{
-    margin-top: 30px;
+.submitbbutton {
+    background-color: plum;
+    width: 250px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    font-family: "neo-bold";
+    cursor: pointer;
 }
-
-
 
 /*imageUploadSection */
 .imageUploadSection{
-    width: 50%;
-    margin: 0 auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    align-items: center;
 }
 
-
-.imageUploadSection>div{
-    display: inline-block;
-    margin-left: 40px;
-}
-
-.buttonContainer{
-    text-align: center;
+.imageUploadSection>input{
+    padding-left: 4rem;
+    padding-bottom: 3rem;
 }

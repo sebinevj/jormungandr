@@ -1,5 +1,6 @@
 import './PostGame.css'
 import Footer from '../components/Footer';
+import Header from '../components/Header'
 import {useEffect, useState, useRef} from 'react';
 import Box from '@mui/material/Box';
 import { useNavigate } from "react-router-dom";
@@ -218,6 +219,9 @@ export default function PostGame(){
             console.log(error); // 'An error has occurred: 404'
           });
 
+
+          alert("Game submitted successfully!")
+
     }
 
     const handleChange = (event) => {
@@ -228,9 +232,10 @@ export default function PostGame(){
     //     console.log("selectedGenres", selectedGenres);
     // },[selectedGenres])
 
-    return(
+    return (
         <div className='wrapper'>
-            <header className={isFix ?'menuNavFixed postGameSection' : `menuNav postGameSection`} ref={navRef} >
+            <Header />
+            {/*<header className={isFix ?'menuNavFixed postGameSection' : `menuNav postGameSection`} ref={navRef} >
                 <nav>
                     <div>
                     <div className='title nav postGame' onClick={() => navigate('/home')}>Jörmungandr</div>
@@ -245,128 +250,121 @@ export default function PostGame(){
                     </div>
                 </nav>
             </header>
-
-            <section className='devInfoSection'>
-                <div className='devInfoContainer'>
-                    <div>
-                        <label>
-                            <text>Title</text>
-                            <input ref={titleRef} onChange={titleChange} type="text"></input>
-                        </label>
-                        <label>
-                            <text>Price</text>
-                            <input ref={priceRef} onChange={priceChange} type="text"></input>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <text>Description</text>
-                            <textarea ref={desRef} onChange={desChange} ></textarea>
-                        </label>
-                    </div>
-                    <div>
-                        <FormControl sx={{ m: 1, width: 500 }}>
-                        <InputLabel>Multiple Select</InputLabel>
+    */}
+            <div className='devInfoContainer'>
+                <div className="insideInfoContainer">
+                    <h1>Post Game</h1>
+                    <label>
+                        <text>Game Title</text>
+                        <input ref={titleRef} onChange={titleChange} type="text"></input>
+                    </label>
+                    <label>
+                        <text>Game Price</text>
+                        <input ref={priceRef} onChange={priceChange} type="text"></input>
+                    </label>
+                </div>
+                <div className="insideInfoContainer">
+                    <label>
+                        <text>Description</text>
+                        <textarea ref={desRef} onChange={desChange} ></textarea>
+                    </label>
+                </div>
+                <div className="insideInfoContainer">
+                    <FormControl sx={{ m: 1, width: 500 }}>
+                        <InputLabel>Select Genre</InputLabel>
                         <Select
-                        multiple
-                        value={selectedGenres}
-                        onChange={(e) => setSelectedGenres(e.target.value)}
-                        input={<OutlinedInput label="Multiple Select" />}
-                        renderValue={(selected) => (
-                        <Stack gap={1} direction="row" flexWrap="wrap">
-                            {selected.map((value) => (
-                            <Chip
-                                key={value}
-                                label={value}
-                                onDelete={() =>
-                                setSelectedGenres(
-                                    selectedGenres.filter((item) => item !== value)
-                                )
-                                }
-                                deleteIcon={
-                                    <CancelIcon
-                                        onMouseDown={(event) => event.stopPropagation()}
-                                    />
-                                    }
-                                />
-                                ))}
+                            multiple
+                            value={selectedGenres}
+                            onChange={(e) => setSelectedGenres(e.target.value)}
+                            input={<OutlinedInput label="Multiple Select" />}
+                            renderValue={(selected) => (
+                                <Stack gap={1} direction="row" flexWrap="wrap">
+                                    {selected.map((value) => (
+                                        <Chip
+                                            key={value}
+                                            label={value}
+                                            onDelete={() =>
+                                                setSelectedGenres(
+                                                    selectedGenres.filter((item) => item !== value)
+                                                )
+                                            }
+                                            deleteIcon={
+                                                <CancelIcon
+                                                    onMouseDown={(event) => event.stopPropagation()}
+                                                />
+                                            }
+                                        />
+                                    ))}
                                 </Stack>
-                        )}
+                            )}
                         >
-                        {genres.map((name) => (
-                        <MenuItem key={name} value={name}>
-                            {name}
-                        </MenuItem>
-                        ))}
+                            {genres.map((name) => (
+                                <MenuItem key={name} value={name}>
+                                    {name}
+                                </MenuItem>
+                            ))}
                         </Select>
-                        </FormControl>
-                        </div>
-
-                        <div className='buttonContainer'>
-                            <button>next</button>
-                        </div>
+                    </FormControl>
                 </div>
-            </section>
-            <section className='sysReqSection'>
-            <div>
-                <label>
-                    <span>Graphic</span>
-                    <input  ref={graphicRef} onChange={graphicChange} type="text"></input>
-                </label>
-                <label>
-                    <span>Memory</span>
-                    <input ref={memoryRef} onChange={memoryChange} type="text"></input>
-                </label>
-                <label>
-                    <span>Storage</span>
-                    <input ref={storageRef} onChange={storageChange} type="text"></input>
-                </label>
-                <div>
-                <Box sx={{ minWidth: 120, maxWidth: 220 }}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">platform</InputLabel>
-                    <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={sys}
-                    label="platform"
-                    onChange={handleChange}
-                    >
-                    <MenuItem value={"Windows"}>Windows</MenuItem>
-                    <MenuItem value={"Mac"}>Mac</MenuItem>
-                    <MenuItem value={"Linux"}>Linux</MenuItem>
-                    </Select>
-                </FormControl>
-                </Box>
-                </div>
+                {/*
+                        <div>
+                            <button className='submitbbutton'
+                            >Next</button>
+                        </div>
+                        */}
+            </div>
+            <div className='sysReqSection'>
+                <div className='insideSys'>
+                    <label>
+                        <span>Graphics</span>
+                        <input ref={graphicRef} onChange={graphicChange} type="text"></input>
+                    </label>
+                    <label>
+                        <span>Memory</span>
+                        <input ref={memoryRef} onChange={memoryChange} type="text"></input>
+                    </label>
+                    <label>
+                        <span>Storage</span>
+                        <input ref={storageRef} onChange={storageChange} type="text"></input>
+                    </label>
+                    </div>
+                    <div className="box">
+                        <Box>
+                            <FormControl sx={{ m: 1, width: 500 }}>
+                                <InputLabel id="demo-simple-select-label">Platform</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={sys}
+                                    label="platform"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={"Windows"}>Windows</MenuItem>
+                                    <MenuItem value={"Mac"}>Mac</MenuItem>
+                                    <MenuItem value={"Linux"}>Linux</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </div>
+                    {/*
                 <div className='buttonContainer'>
                     <button>next</button>
                 </div>
-            </div>
+                    */}
 
-            </section>
-            <section className='imageUploadSection'>
+            </div>
+            <div className='imageUploadSection'>
+                <input onChange={(e) => setFiles(e.target.files)} type='file' multiple={true} />
                 <div>
-                    <input onChange={(e)=>setFiles(e.target.files)}  type='file' multiple={true}/>
-                    <div className='buttonContainer'>
-                        <button onClick={handleUpload}>submit files</button>
-                    </div>
+                    <button className="submitbbutton" onClick={handleUpload}>Submit</button>
                 </div>
                 {/*tempImg && <img 
                 width={"350px"} height={"350px"}
                         src={`http://localhost:5555/task_3.JPG`}/>*/}
-                
-            </section>
-            <section className='agreementSection'>
-                <div>
-                    <h2>Game Submission Agreement</h2>
-                    <p>Before submitting your game, please carefully read and agree to the following terms and conditions. By signing below, you acknowledge your understanding and acceptance of the terms outlined in this agreement.</p>
-                    
-                </div>
-                <button>I agree</button>
-            </section>
-
-            <Footer/>
+                <br></br>
+                <br></br>
+                <Footer />
+            </div>
         </div>
     );
 

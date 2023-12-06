@@ -4,12 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Header(props){
 
-
-
     const [auth, setAuth] = useState(null);
-
-    
-
     const navigate = useNavigate();
    
 
@@ -47,21 +42,6 @@ function Header(props){
 
     return (
         <>
-            {/* <div className="OuterContainer">
-   
-                <div className="FirstHeader">
-                        <button onClick={() => navigate('/home')}>
-                            Jörmungandr
-                        </button>
-           
-              
-                    {auth &&<button onClick={() => handleProfile()}>profile</button>}
-                    {!auth  && <button onClick={() => navigate('/login')}>sign in</button>}
-                    {!auth  && <button onClick={() => navigate('/register')} >sign up</button>}
-                    {auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
-                    {auth && auth.Developer && <button onClick={() => navigate('/postgame')} >post a game</button>}
-          
-            </div> */}
             <header className="FirstHeader">
                     <div className='logo'>
                         <button className="but" onClick={() => navigate('/home')}>
@@ -76,8 +56,6 @@ function Header(props){
                         {auth  &&<button onClick={()=>handleSignOut()}>sign out</button>}
                         {auth && auth.Developer && <button onClick={() => navigate('/postgame')} >post a game</button>}
                     </div>
-
-            
             </header>
         </>
     )

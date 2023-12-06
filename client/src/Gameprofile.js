@@ -143,8 +143,9 @@ export default function GameProfile(){
 
 
     return(
+        <div className="container">
+        <Header/>
         <div className='gameProfileBackgroundContainer'>
-            <Header/>
             <h1> {`${gameName}`} </h1>
             <div className='gameProfileBody'>
                 <div className='contentContainer'>
@@ -227,87 +228,9 @@ export default function GameProfile(){
 
                 </div>
             </div>
-            {/*
-            
-                <div className='contentContainer'>
-
-                    <div className='leftContainer'>
-                        <div> {`${gameName}`} </div>
-                        <img
-                            width={"300px"} height={"300px"}
-                            src={`http://localhost:5555/${currgameId}/${gameName}-01.png`}
-                        />
-                        {data && <div className='gameProfileDescription'> {data.gameProfile.Description}  </div>}
-                        {/*
-                        
-                        <img
-                            width={"300px"} height={"300px"}
-                            src={`http://localhost:5555/${location.state[1]}/${location.state[0]}-01.png`}
-                        />
-
-                        <div className='extraImagesContainer'>
-                            {data && extraImage.map((index) => {
-                                return(
-                                <ExtraImage gameId={`${location.state[1]}`} gameTitle={`${location.state[0]}`} index={index} navigateToGameProfile={null}  setMainImageIdx={null}/>
-                                )
-                            })}
-                        </div>
-                    </div>
-                    
-                    <div className='rightContainer'>
-                        
-                        {data && 
-                            <div className='developerContainer'>
-                                <div>{data.gameProfile.DeveloperName}</div>
-                                <div>{data.gameProfile.Location}</div>
-                                <div>{data.gameProfile.Phone}</div>
-                            </div>
-                        }
-                        {data && 
-                            <div className='sysReqContainer'>
-                                <div>{data.gameProfile.Memory}</div>
-                                <div>{data.gameProfile.Graphics}</div>
-                                <div>{data.gameProfile.Storage}</div>
-                                <div>{data.gameProfile.Platform}</div>
-                            </div>
-                        }
-                    </div>
-                </div>
-                <div className='reviewListContainer'>
-                    {data && data.reviews.map((review) => {
-                        return(
-                            <Review Name={review.Name} rating={review.Rating} description={review.Description} writtenDate={review.WrittenDate}/>
-                        )
-                    })}
-                </div>
-                <div className='createReviewContainer'>
-                    <form>
-                        <label>Create a review:</label>
-
-                        <textarea 
-                            className="reviewtext" 
-                            value={text}
-                            onChange={e => setText(e.target.value)} 
-                        />
-                        <Rating
-                            value={value}
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-                            }}
-                            />
-                        {value}
-                        
-                        <div>
-                            <button
-                                onClick={createReview}
-                            > submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        */}
                 
             <Footer/>
+        </div>
         </div>
     );
 }
