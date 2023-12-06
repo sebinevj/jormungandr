@@ -7,13 +7,19 @@ To get started with jormungandr, follow these simple steps:
 1. prepare two terminals
 
 2. Terminal 1:
+   <br>
     run  cd /server
+   <br>
     node install express
+   <br>
     node server.js
 
-3. Terminal 2:
+4. Terminal 2:
+   <br>
     run cd /client
+   <br>
     npm install
+   <br>
     npm start
 
 ## Features
