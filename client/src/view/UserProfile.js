@@ -141,7 +141,7 @@ export default function UserProfile(props){
                     </div>
 
 
-                <h1>Created Games</h1>
+                {games.length > 0 && <h1>Created Games</h1>}
                         <div className='gameProfileBody'>
                             <br></br>
                             {games}
@@ -177,7 +177,6 @@ export default function UserProfile(props){
                             {games}
                         </div>
                 </div>
-            <Footer/>
             </div>
         )
     }

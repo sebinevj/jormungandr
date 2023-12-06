@@ -126,102 +126,104 @@ export default function PostGame(){
 
     //this function handles submitting pictures from user
     //and send them to server by using fetch 
-    function handleUpload(){
-       
+    function handleUpload() {
+
         //make  selectedGenres into numeric values 
 
-        let idx = [];
-        selectedGenres.forEach((genre)=>{
-            const i = genres.indexOf(genre) + 1;
-            idx.push(i);
-        })
-
-        const dateObj = new Date();
-        const monthNow = dateObj.getMonth();
-        const dateNow = dateObj.getDate();
-
-        const dateToSend = "" +2023+ "-" + (monthNow + 1) + "-" + (dateNow + 1);
-        
-
-        // const dateToSend = {
-        //     year: 2023,
-        //     month: monthNow + 1,
-        //     date: dateNow + 1
-        // }
-
-        console.log(dateToSend);
-
-        const gameInfo = {
-            gameTable:{
-                title: titleRef.current.value,
-                price: priceRef.current.value,
-                description: desRef.current.value,
-                date: dateToSend
-            },
-            genre: idx,
-            email: auth.userEmail,
-            sysTable:{
-                graphic: graphicRef.current.value,
-                memory: memoryRef.current.value,
-                storage: storageRef.current.value,
-                platform: sys,
-            },
-            
+        if (selectedGenres.length == 0 || titleRef.current.value == null || priceRef.current.value == null || desRef.current.value == null ||
+            graphicRef.current.value == null || memoryRef.current.value == null || storageRef.current.value == null || sys == "" || files == null) {
+            alert("Submission failed. Not all inputs are filled.")
         }
-        console.log("refs", gameInfo);
+        else {
 
-        if(!files){
-            alert("No files are selected");
-        }
 
-        const fd = new FormData();
-        //saving multiple files into FormData
-        for(let i = 0; i < files.length; i++){
-            fd.append(`files`, files[i]);
-        }
-        
-
-        getMostRecentGameId().then((retrivedGameId)=>{
-           
-            console.log("retrivedGameId :", retrivedGameId)
-            //after retriving moust Recent GameId, save that in to server.js local variable in order to
-            //make dir according to upload images' GameId
-            
-            //1st putting Game's information; SQL will auto generate GameId but we are passing retrivedGameId
-            //to save into local variable in server.js for future images FormData
-            fetch('http://localhost:5555/postgameinfo',{
-                method: 'POST',
-                body:JSON.stringify({id: retrivedGameId.GameId.GameId + 1, gameInfo: gameInfo}),
-                headers: {
-                    'Content-Type': 'application/json',
-                }
+            let idx = [];
+            selectedGenres.forEach((genre) => {
+                const i = genres.indexOf(genre) + 1;
+                idx.push(i);
             })
-            .then(res => res.json())
-            .then((data) => {
-                //after inserting Game's data
-                //send another fetch to server to store submitted image files 
-                fetch('http://localhost:5555/uploadimages',{
-                    method: 'POST',
-                    body: fd,
-                    
-                })
-                .then(res => res.json())
-                .then((data) => {
-                    
-                })
-                .catch((err) => ("Error occured", err));
-            })
-            .catch((error)=>console.log(error))
+
+            const dateObj = new Date();
+            const monthNow = dateObj.getMonth();
+            const dateNow = dateObj.getDate();
+
+            const dateToSend = "" + 2023 + "-" + (monthNow + 1) + "-" + (dateNow + 1);
+
+            console.log(dateToSend);
+
+            const gameInfo = {
+                gameTable: {
+                    title: titleRef.current.value,
+                    price: priceRef.current.value,
+                    description: desRef.current.value,
+                    date: dateToSend
+                },
+                genre: idx,
+                email: auth.userEmail,
+                sysTable: {
+                    graphic: graphicRef.current.value,
+                    memory: memoryRef.current.value,
+                    storage: storageRef.current.value,
+                    platform: sys,
+                },
+
             }
-        );
+            console.log("refs", gameInfo);
 
-        getMostRecentGameId().catch((error) => {
-            console.log(error); // 'An error has occurred: 404'
-          });
+            if (!files) {
+                alert("No files are selected");
+            }
+
+            const fd = new FormData();
+            //saving multiple files into FormData
+            for (let i = 0; i < files.length; i++) {
+                fd.append(`files`, files[i]);
+            }
 
 
-          alert("Game submitted successfully!")
+            getMostRecentGameId().then((retrivedGameId) => {
 
+                console.log("retrivedGameId :", retrivedGameId)
+                //after retriving moust Recent GameId, save that in to server.js local variable in order to
+                //make dir according to upload images' GameId
+
+                //1st putting Game's information; SQL will auto generate GameId but we are passing retrivedGameId
+                //to save into local variable in server.js for future images FormData
+                fetch('http://localhost:5555/postgameinfo', {
+                    method: 'POST',
+                    body: JSON.stringify({ id: retrivedGameId.GameId.GameId + 1, gameInfo: gameInfo }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(res => res.json())
+                    .then((data) => {
+                        //after inserting Game's data
+                        //send another fetch to server to store submitted image files 
+                        fetch('http://localhost:5555/uploadimages', {
+                            method: 'POST',
+                            body: fd,
+
+                        })
+                            .then(res => res.json())
+                            .then((data) => {
+
+                            })
+                            .catch((err) => ("Error occured", err));
+                    })
+                    .catch((error) => console.log(error))
+            }
+            );
+
+            getMostRecentGameId().catch((error) => {
+                console.log(error); // 'An error has occurred: 404'
+            });
+
+
+            alert("Game submitted successfully!")
+            navigate('/home')
+
+        }
     }
 
     const handleChange = (event) => {
@@ -354,6 +356,7 @@ export default function PostGame(){
 
             </div>
             <div className='imageUploadSection'>
+                <p>NOTE: images must be named with "gamename-##" format</p>
                 <input onChange={(e) => setFiles(e.target.files)} type='file' multiple={true} />
                 <div>
                     <button className="submitbbutton" onClick={handleUpload}>Submit</button>
