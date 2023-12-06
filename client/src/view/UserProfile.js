@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import './UserProfile.css'
@@ -119,7 +120,7 @@ export default function UserProfile(props){
 
         const games = gameList.map((game)=>(
             <div className='gamecontainer'>
-                <h2>{game.Name}- ${game.Price.toPrecision(4)}</h2>
+                <h2>{game.Name}- ${game.Price.toFixed(2)}</h2>
                 <small>{game.Description}</small>
                 <div>{game.Platform}</div>
                 <img width={"150px"} height={"150px"} 
@@ -146,7 +147,7 @@ export default function UserProfile(props){
                             {games}
                         </div>
                 </div>
-            
+                <br></br>
             </div>
         )
     }else{
@@ -176,6 +177,7 @@ export default function UserProfile(props){
                             {games}
                         </div>
                 </div>
+            <Footer/>
             </div>
         )
     }

@@ -64,9 +64,9 @@ function Header(props){
             </div> */}
             <header className="FirstHeader">
                     <div className='logo'>
-                        <p>
-                            Jörmungandr
-                        </p>
+                        <button className="but" onClick={() => navigate('/home')}>
+                            <p>Jörmungandr</p>
+                        </button>
                     </div>
                    
                     <div className='rightButtons'>
