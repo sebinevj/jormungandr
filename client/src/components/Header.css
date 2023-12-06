@@ -9,28 +9,20 @@
 }
 
 
-
-
-.OuterContainer{
-    
-    top: 10px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 100px;
-    gap: 3px;
-}
-
 .FirstHeader{
     display: flex;
-    flex-direction: row;
-    border: 2px solid black;
-    border-radius: 15px;
+    justify-content: space-between;
     height: 50px;
     background-color: rgb(255, 200, 104);
+    width: 100%;
+    margin: 0;
 }
 
-.FirstHeader>button{
+.FirstHeader>div{
+    display: inline;
+}
+
+.FirstHeader>.rightButtons>button{
     width: 110px;
     height: 40px;
     border: none;
@@ -40,6 +32,13 @@
 
 .FirstHeader>button:hover{
     text-decoration: underline dashed tomato;
+}
+
+.FirstHeader>div {
+    display: flex;
+    align-items: center; /* Center vertically */ /* Center horizontally */ /* Adjust the height as needed */
+    font-size: xx-large;
+    padding-left: 1%;
 }
 
 .FirstHeader>input{
@@ -60,3 +59,4 @@
     box-shadow: 2px 2px 1px black;
     border-radius: 15px;
 }
+
