@@ -77,9 +77,9 @@ export default function Login(){
             setEmailMsg("");
         }else{
             if (!validateEmail(currEmail)) {
-                setEmailMsg("please submit valid email format")
+                setEmailMsg("Please submit valid email format")
             } else if(validateEmail(currEmail)){
-                setEmailMsg("correct email format");
+                setEmailMsg("Correct email format");
             }
         }
     }
@@ -91,6 +91,10 @@ export default function Login(){
         setPassword(currPassword);
     }
 
+    function naviateToRegister(){
+        navigate('/register');
+    }
+
 
 
 
@@ -98,7 +102,6 @@ export default function Login(){
         <div className='background'>
             <div className='logincontainer'>
             <div className='title'> log in </div>
-            {errorMessage && <div className='errorMessage'>login failed</div>}
             <form onSubmit={handleSubmit}>
                 <div className='innerContainer'>
                     <label>Enter your email </label>
@@ -120,8 +123,13 @@ export default function Login(){
                     onChange={onPasswordHandler}
                     />
                 </div>
+                {errorMessage && <div className='invalidMessage'>Login failed</div>}
             <input type="submit" />
             </form>
+            <div className='lastContainer'>
+                <div className='alreadyHave'>Don't have an account?</div>
+                <button onClick={naviateToRegister} className='reviewbbutton'>Register</button>
+            </div>
 
             </div>
         </div>
