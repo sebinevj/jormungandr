@@ -41,10 +41,10 @@ const storage = multer.diskStorage({
     },
     filename: function(req, file, cb) {
 
-        let idx = 0;
+        //let idx = 0;
         //const name = 
          
-        file.originalname = `${fileName}-0${idx++}.JPG`;
+        //file.originalname = `${fileName}-0${idx++}.JPG`;
         
         cb(null, file.originalname)
     }
