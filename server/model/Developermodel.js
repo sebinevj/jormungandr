@@ -5,7 +5,7 @@ module.exports = class DeveloperModel{
     //select DeveloperId in Developer table with given data, UserId
     //@data represents UserId
     getDeveloperId(data){
-        let stmt = `select DeveloperId from User where UserId = ?`;
+        let stmt = `select DeveloperId from user where UserId = ?`;
 
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data])
@@ -20,7 +20,7 @@ module.exports = class DeveloperModel{
     //select DeveloperId in Developer table with given data, email
     //@data represents email
     getDeveloperIdByEmail(data){
-        let stmt = `select DeveloperId from User where Email = ?`;
+        let stmt = `select DeveloperId from user where Email = ?`;
 
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data])
@@ -38,8 +38,8 @@ module.exports = class DeveloperModel{
     //@data represents UserId
     selectAllDeveloperColumn(data){
         let stmt = 
-        `SELECT dev.DeveloperId, dev.DeveloperName, dev.Location, dev.Phone FROM Developer as dev 
-        join User as us 
+        `SELECT dev.DeveloperId, dev.DeveloperName, dev.Location, dev.Phone FROM developer as dev 
+        join user as us 
         on dev.DeveloperId = us.DeveloperId 
         where us.UserId = ?`;
 
@@ -61,9 +61,9 @@ module.exports = class DeveloperModel{
 
         let stmt = 
         `SELECT ga.GameId, ga.Name, ga.Price, ga.RelaseDate, ga.Description, sys.Graphics, sys.Memory, sys.Platform, sys.Storage FROM Developer as dev 
-        join Game as ga
+        join game as ga
         on dev.DeveloperId = ga.DeveloperId
-        join SystemRequirements as sys
+        join systemrequirements as sys
         on ga.SysReqsId = sys.SysReqsId
         where dev.DeveloperId = ?`;
         return (new Promise((resolve, reject) => {

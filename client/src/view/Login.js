@@ -12,12 +12,14 @@ export default function Login(){
 
     const [errorMessage, setErrorMessage] = useState("");
 
-
+    
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('here');
 
         if(isEmailValid){
-            fetch('http://localhost:5555/login', {
+            console.log("email is valid");
+            fetch('http://localhost:8080/login', {
             method: 'POST',
             body: JSON.stringify({email: email, password: password}),
             headers: {

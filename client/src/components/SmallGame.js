@@ -22,7 +22,7 @@ function SmallGame(props){
     useEffect(() => {
 
         //fetch POST loadImages , cant do GET since we have some data to send? 
-        fetch('http://localhost:5555/loadimages', {
+        fetch('http://localhost:8080/loadimages', {
             method: 'POST',
             body: JSON.stringify({type: typeGame}),
             headers: {
@@ -67,7 +67,7 @@ function SmallGame(props){
                     return(
                     <div className='onSaleGame'>
                         <img width={"150px"} height={"150px"} 
-                        src={`http://localhost:5555/${array[idx].GameId}/${array[idx].Name}-01.png`}
+                        src={`http://localhost:8080/${array[idx].GameId}/${array[idx].Name}-01.png`}
                         onClick={navigateToGameProfile}
                         />
                         <div>{array[idx].Name.substring(0,15)}</div>

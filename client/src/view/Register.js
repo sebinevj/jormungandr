@@ -52,7 +52,7 @@ export default function Register(){
         if(isUserNameValid !== null && isPasswordValid !== null && isPasswordConfirmValid() && isEmailValid){
             console.log("ready to send to the server");
 
-            fetch('http://localhost:5555/register', {
+            fetch('http://localhost:8080/register', {
             method: 'POST',
             body: JSON.stringify({userName: userName, password: password, email: email, DOB: dateValue}),
             headers: {

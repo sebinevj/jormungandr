@@ -10,7 +10,7 @@ const multer = require("multer");
 const fs = require('fs');
 
 const app = express();
-const port = process.env.PORT || 5555; 
+const port = 8080; 
 const {imageloader, gameprofileLoader, nextgameIdHandler, buyGameHandler} = require('./controller/GameController');
 const {loginHandler, registerHandler, getUserIdHandler, getPurchasedGameHandler, getTransactionsByEmail} = require('./controller/UserController');
 const {getDeveloperIdHandler, getAllDeveloperColumnHandler, getDeveloperHandler, submitGameHandler} = require('./controller/DeveloperController');

@@ -12,21 +12,20 @@ exports.loginHandler = async (req, res, next) => {
         console.log(error);
     }
 
-
-    async function hashPassword(){
-        let hashedPW;
-        try{
-            [hashedPW] = await us.hashPassword(req.body.password);
-        }catch(error){
-            console.log(error);
-        }
-        isPasswordMatch(hashedPW);
-    }
+    // async function hashPassword(){
+    //     let hashedPW;
+    //     try{
+    //         [hashedPW] = await us.hashPassword(req.body.password);
+    //     }catch(error){
+    //         console.log(error);
+    //     }
+    //     isPasswordMatch(hashedPW);
+    // }
 
     async function isPasswordMatch(hashedPW){
 
         //console.log("login handler:", Object.values(hashedPW)[0], result.password);
-        if(Object.values(hashedPW)[0] === result.password){
+        if(hashedPW === result.password){
            
             state = {flag: true, message:""};
            
@@ -35,7 +34,6 @@ exports.loginHandler = async (req, res, next) => {
         }
         res.send({state, result});
     }
-
 
     let state;
     //given email was registered
@@ -47,7 +45,11 @@ exports.loginHandler = async (req, res, next) => {
         // }catch(error){
         //     console.log(error);
         // }
-        hashPassword();
+
+        console.log(result.password)
+        console.log(req.body.password)
+        isPasswordMatch(req.body.password);
+
 
 
         //on success

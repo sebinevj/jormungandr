@@ -5,11 +5,12 @@ module.exports = class UsersModel{
     //fetch User table by given data; email
     getUserId(data){
         //console.log("getting User data for..", data);
-        let stmt = `select * from User where email = ?`;
+        let stmt = `select * from user where email = ?`;
 
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data])
                 .then(([rows, fieldData]) => {
+                    console.log(rows);
                     resolve(rows); // return data
                 })
                 .catch(err => console.log(err))
@@ -19,7 +20,7 @@ module.exports = class UsersModel{
 
     //fetch User's email and name by given data; UserId
     getUserInfoById(data){
-        let stmt = `select Email, Name, LastPurchase from User where UserId = ?`;
+        let stmt = `select Email, Name, Last from user where UserId = ?`;
 
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data])
@@ -62,7 +63,7 @@ module.exports = class UsersModel{
     //check email address when registering 
     //if email already exist, notify user 
     checkUserEmail(email){
-        let stmt = `select UserId from User where email = ?`;
+        let stmt = `select UserId from user where email = ?`;
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [email])
                 .then(([rows, fieldData]) => {
@@ -89,7 +90,7 @@ module.exports = class UsersModel{
 
     registerUser(data){
 
-        let stmt = `Insert Into User(Email, password, Name, DOB) value (?,?,?,?)`;
+        let stmt = `Insert Into user(Email, password, Name, DOB) value (?,?,?,?)`;
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data.email, data.password, data.userName, data.DOB.slice(0,10)])
                 .then(([rows, fieldData]) => {
@@ -121,8 +122,8 @@ module.exports = class UsersModel{
     //@data represnets UserID 
     UserTransactions(data)
     {
-        let stmt = `SELECT ts.purchaseDate, ga.Name, ga.GameId FROM Transaction as ts 
-        Join Game as ga 
+        let stmt = `SELECT ts.purchaseDate, ga.Name, ga.GameId FROM transaction as ts 
+        Join game as ga 
         on ts.GameId = ga.GameId
         where UserId = ?`
 
@@ -139,8 +140,8 @@ module.exports = class UsersModel{
 
     UserTransactionsIdOnly(data)
     {
-        let stmt = `SELECT ga.GameId FROM Transaction as ts 
-        Join Game as ga 
+        let stmt = `SELECT ga.GameId FROM transaction as ts 
+        Join game as ga 
         on ts.GameId = ga.GameId
         where UserId = ?`
 

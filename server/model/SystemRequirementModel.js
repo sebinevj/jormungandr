@@ -5,7 +5,7 @@ module.exports = class SystemRequirementModel{
     //returns most recently made SystemRequirement
     getMostRecentSystemRequirement(){
 
-        let stmt = 'SELECT SysReqsId FROM SystemRequirements order by SysReqsId Desc Limit 1';
+        let stmt = 'SELECT SysReqsId FROM systemrequirements order by SysReqsId Desc Limit 1';
         return (new Promise((resolve, reject) => {
             connection.execute(stmt)
                 .then(([rows, fieldData]) => {
@@ -25,7 +25,7 @@ module.exports = class SystemRequirementModel{
     insertSystemRequirement(data){
         console.log("insertSystemRequirement", JSON.stringify(data), data.memory);
 
-        let stmt = `insert into SystemRequirements(Memory, Graphics, Storage, Platform) 
+        let stmt = `insert into systemrequirements(Memory, Graphics, Storage, Platform) 
         values(?, ?, ?, ?);`
         return (new Promise((resolve, reject) => {
             connection.execute(stmt, [data.memory, data.graphic, data.storage, data.platform])

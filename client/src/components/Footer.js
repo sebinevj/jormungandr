@@ -16,9 +16,7 @@ function Footer(){
                 <h2>OUR COMPANY</h2>
                 <ul className="FooterListContainer">
                     <li>About Us</li>
-                    <li>Careers</li>
                     <li>News</li>
-                    <li>Investor Relations</li>
                 </ul>
             </div>
             
@@ -34,7 +32,6 @@ function Footer(){
                 <ul className="FooterListContainer">
                     <li>Privacy Policy</li>
                     <li>Terms of Use</li>
-                    <li>Your Privacy Choices</li>
                 </ul>
             </div>
 
@@ -45,7 +42,10 @@ function Footer(){
                     <li><IoLogoAndroid/>Android</li>
                 </ul>
 
-                <h2>SOCIAL</h2>
+                
+            </div>
+            <div>
+            <h2>SOCIAL</h2>
                 <ul className="FooterListContainer SOCIAL">
                     <li><FaInstagram/></li>
                     <li><FaFacebook/></li>

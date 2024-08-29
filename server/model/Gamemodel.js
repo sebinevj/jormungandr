@@ -6,10 +6,10 @@ module.exports = class GameModel{
     //@data is GameId
     getGameTable(data){
         let stmt = `SELECT gm.Name, gm.Price, gm.Description, gm.RelaseDate, sys.Memory, sys.Graphics, sys.Storage, sys.Platform, dev.DeveloperName, dev.Phone, dev.Location 
-        FROM Game as gm
-        join SystemRequirements as sys
+        FROM game as gm
+        join systemrequirements as sys
         on gm.SysReqsId = sys.SysReqsId
-        join Developer as dev 
+        join developer as dev 
         on gm.DeveloperId = dev.DeveloperId 
         Where GameId = ?`;
 
@@ -24,8 +24,8 @@ module.exports = class GameModel{
 
     getReviewTable(data){
         let stmt = `select rev.Rating, rev.WrittenDate, rev.Description, us.Name 
-        from Review as rev 
-        join User as us 
+        from review as rev 
+        join user as us 
         on rev.UserId = us.UserId 
         where GameId = ?`;
 
@@ -39,7 +39,7 @@ module.exports = class GameModel{
     }
 
     getMostRecentGameId(){
-        let stmt = `select GameId from Game ORDER BY GameId DESC LIMIT 1;`
+        let stmt = `select GameId from game ORDER BY GameId DESC LIMIT 1;`
         return (new Promise((resolve, reject) => {
             connection.execute(stmt)
                 .then(([rows, fieldData]) => {
@@ -51,7 +51,7 @@ module.exports = class GameModel{
 
 
     getAllGamesId(){
-        let stmt = `select GameId, Name, Price, Description from Game;`
+        let stmt = `select GameId, Name, Price, Description from game;`
         return (new Promise((resolve, reject) => {
             connection.execute(stmt)
                 .then((rows, fieldData) => {
@@ -75,7 +75,7 @@ module.exports = class GameModel{
     //          }   
     // }
     insertNewGame(data){
-        let stmt = `Insert into Game(DeveloperId, SysReqsId, Name, Price, Description, RelaseDate) 
+        let stmt = `Insert into game(DeveloperId, SysReqsId, Name, Price, Description, RelaseDate) 
         values(?,?,?,?,?,?);`
         return (new Promise((resolve, reject) => {
             connection.execute(stmt,[data.DeveloperId, data.SysReqsId, data.game.title, data.game.price, data.game.description, data.game.date])
@@ -89,7 +89,7 @@ module.exports = class GameModel{
 
 
     insertNewTransaction(data){
-        let stmt = `Insert into Transaction(GameId, UserId, purchaseDate) values(?,?,NOW());`
+        let stmt = `Insert into transaction(GameId, UserId, purchaseDate) values(?,?,NOW());`
         return (new Promise((resolve, reject) => {
             connection.execute(stmt,[data.GameId, data.UserId])
                 .then((rows, fieldData) => {

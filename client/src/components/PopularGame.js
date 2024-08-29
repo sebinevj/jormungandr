@@ -29,7 +29,7 @@ function PopularGame(props){
 
     useEffect(() => {
         //fetch POST loadImages , cant do GET since we have some data to send? 
-        fetch('http://localhost:5555/loadimages', {
+        fetch('http://localhost:8080/loadimages', {
             method: 'POST',
             body: JSON.stringify({type: typeGame}),
             headers: {
@@ -49,7 +49,7 @@ function PopularGame(props){
     
     useEffect(() => {
         if (auth) {
-            fetch('http://localhost:5555/getusertransactions', {
+            fetch('http://localhost:8080/getusertransactions', {
                 method: 'POST',
                 body: JSON.stringify({Email: auth.userEmail}),
                 headers: {
@@ -121,7 +121,7 @@ function PopularGame(props){
             alert("You already bought this game");
         }
         else{
-            fetch('http://localhost:5555/buygame',{
+            fetch('http://localhost:8080/buygame',{
                 method: 'POST',
                 body:JSON.stringify({GameId: array[curIdx].GameId, Email: auth.userEmail}),
                 headers: {
@@ -153,8 +153,8 @@ function PopularGame(props){
                {array &&
                 <img
                 width={"350px"} height={"350px"}
-                //src={`http://localhost:5555/${array[curIdx].gameTitle}/${array[curIdx].gameTitle}-01.png`}
-                src={`http://localhost:5555/${array[curIdx].GameId}/${array[curIdx].Name}-0${mainImageIdx}.png`}
+                //src={`http://localhost:8080/${array[curIdx].gameTitle}/${array[curIdx].gameTitle}-01.png`}
+                src={`http://localhost:8080/${array[curIdx].GameId}/${array[curIdx].Name}-0${mainImageIdx}.png`}
                 onClick={navigateToGameProfile}
                 />
                }

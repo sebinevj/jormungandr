@@ -34,14 +34,14 @@ function Home(){
                 <PopularGame
                     type="all"
                 />
-                <h1>Best Rated</h1>
+                {/* <h1>Best Rated</h1>
                 <PopularGame
                     type="bestRated"
                 />
                 <h1>Popular Games</h1>
                 <PopularGame
                     type="popular"
-                />
+                /> */}
                 {/*}
                 <SmallGame
                     type="bestRated"

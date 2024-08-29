@@ -45,7 +45,7 @@ export default function GameProfile(){
         if (init) {
             setInit(false);
 
-            fetch('http://localhost:5555/requestgameprofile', {
+            fetch('http://localhost:8080/requestgameprofile', {
             method: 'POST',
             body: JSON.stringify({id: currgameId}),
             headers: {
@@ -64,7 +64,7 @@ export default function GameProfile(){
 
     useEffect(() => {
         if (auth) {
-            fetch('http://localhost:5555/getusertransactions', {
+            fetch('http://localhost:8080/getusertransactions', {
                 method: 'POST',
                 body: JSON.stringify({Email: auth.userEmail}),
                 headers: {
@@ -103,7 +103,7 @@ export default function GameProfile(){
             alert("You must login to submit a review");
         }
         else {
-            fetch('http://localhost:5555/postreviewinfo',{
+            fetch('http://localhost:8080/postreviewinfo',{
                 method: 'POST',
                 body:JSON.stringify({GameId: currgameId, Description: text, Rating: value, Email: auth.userEmail}),
                 headers: {
@@ -125,7 +125,7 @@ export default function GameProfile(){
             alert("You already bought this game");
         }
         else{
-            fetch('http://localhost:5555/buygame',{
+            fetch('http://localhost:8080/buygame',{
                 method: 'POST',
                 body:JSON.stringify({GameId: currgameId, Email: auth.userEmail}),
                 headers: {
@@ -152,7 +152,7 @@ export default function GameProfile(){
                     <div className='leftcontainercontent'>
                         <img
                             width={"300px"} height={"300px"}
-                            src={`http://localhost:5555/${currgameId}/${gameName}-01.png`}
+                            src={`http://localhost:8080/${currgameId}/${gameName}-01.png`}
                         />
                         {data && <div className='gameProfileDescription'> {data.gameProfile.Description}  </div>}
 

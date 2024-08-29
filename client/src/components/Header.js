@@ -26,7 +26,7 @@ function Header(props){
         //route to userprofile with email:String and Develop:Boolean data
         //email:String will be passed to server 
         //Develop:Boolean will be passed with navigate
-        fetch('http://localhost:5555/getuserid', {
+        fetch('http://localhost:8080/getuserid', {
             method: 'POST',
             body: JSON.stringify({email: auth.userEmail}),
             headers: {

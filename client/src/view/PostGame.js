@@ -112,7 +112,7 @@ export default function PostGame(){
 
     async function getMostRecentGameId() {
         
-        const response = await fetch('http://localhost:5555/getnextgameid');
+        const response = await fetch('http://localhost:8080/getnextgameid');
 
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;
@@ -189,7 +189,7 @@ export default function PostGame(){
 
                 //1st putting Game's information; SQL will auto generate GameId but we are passing retrivedGameId
                 //to save into local variable in server.js for future images FormData
-                fetch('http://localhost:5555/postgameinfo', {
+                fetch('http://localhost:8080/postgameinfo', {
                     method: 'POST',
                     body: JSON.stringify({ id: retrivedGameId.GameId.GameId + 1, gameInfo: gameInfo }),
                     headers: {
@@ -200,7 +200,7 @@ export default function PostGame(){
                     .then((data) => {
                         //after inserting Game's data
                         //send another fetch to server to store submitted image files 
-                        fetch('http://localhost:5555/uploadimages', {
+                        fetch('http://localhost:8080/uploadimages', {
                             method: 'POST',
                             body: fd,
 
@@ -363,7 +363,7 @@ export default function PostGame(){
                 </div>
                 {/*tempImg && <img 
                 width={"350px"} height={"350px"}
-                        src={`http://localhost:5555/task_3.JPG`}/>*/}
+                        src={`http://localhost:8080/task_3.JPG`}/>*/}
                 <br></br>
                 <br></br>
                 <Footer />
