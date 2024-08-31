@@ -74,13 +74,13 @@ exports.registerHandler = async(req,res,next)=>{
 
 
     console.log("registerHandler: password is ", req.body.password);
-    let hashedPW;
-    try{
-        //console.log("searching for ", req.body.email);
-        [hashedPW] = await us.hashPassword(req.body.password);
-    }catch(error){
-        console.log(error);
-    }
+    // let hashedPW;
+    // try{
+    //     //console.log("searching for ", req.body.email);
+    //     [hashedPW] = await us.hashPassword(req.body.password);
+    // }catch(error){
+    //     console.log(error);
+    // }
 
 
     let user_id;
@@ -99,8 +99,8 @@ exports.registerHandler = async(req,res,next)=>{
         console.log("before registering... ", req.body, req.body.DOB.slice(0,10));
 
         try{
-            console.log("hashedPW is ", JSON.stringify(hashedPW), Object.values(hashedPW)[0]);
-            req.body.password = Object.values(hashedPW)[0];
+            //console.log("hashedPW is ", JSON.stringify(hashedPW), Object.values(hashedPW)[0]);
+            //req.body.password = Object.values(hashedPW)[0];
             await us.registerUser(req.body);
         }catch(error){
             console.log(error);
