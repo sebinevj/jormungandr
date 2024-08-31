@@ -33,7 +33,7 @@ To get started with jormungandr, follow these simple steps:
 2. Purchase Games:
 
 - Buy your favorite games directly through the platform.
-- Enjoy a seamless and secure purchasing process.
+- Games show up in inventory
 ### For Developers
 1. Post Your Games:
 
@@ -56,3 +56,12 @@ The Jormungandr dashboard provides an intuitive interface to visualize the curre
 ---
 
 Thank you for choosing jormungandr ! Happy gaming! 🎮
+
+![image](https://github.com/user-attachments/assets/dd9dbaeb-3523-4add-ba97-d324b76bde2f)
+
+![image](https://github.com/user-attachments/assets/522843a2-2c24-43d9-a46a-4f8025505683)
+
+![image](https://github.com/user-attachments/assets/43f8722c-e0c7-467a-b9e5-e8da65aa7450)
+
+Watch demo: https://vimeo.com/1004924683?share=copy
+
