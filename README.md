@@ -12,7 +12,7 @@ To get started with jormungandr, follow these simple steps:
    <br>
     run  cd /server
    <br>
-    node install express
+    npm install express
    <br>
     node server.js
 
